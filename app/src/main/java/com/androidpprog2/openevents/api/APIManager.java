@@ -72,6 +72,10 @@ public class APIManager {
         getUsersFiltered(context, listener, email);
     }
 
+    public static void logout() {
+        APIManager.token = null;
+    }
+
     // POST METHOD
     // Creates new User
     public static void postUser(Context context, ResponseListener listener, String name, String last_name, String password, String email, String image) {

@@ -20,7 +20,6 @@ public class ProfileActivity extends AppCompatActivity implements ResponseListen
     private final static int USER_STATS = 1;
     private final static String NO_IMAGE_URL = "https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg";
 
-    //Button startButton;
     private TextView nameTextView;
     private TextView emailTextView;
     private TextView lastNameTextView;
@@ -51,14 +50,6 @@ public class ProfileActivity extends AppCompatActivity implements ResponseListen
         perctTextView = findViewById(R.id.text_perct);
         imageTextView = findViewById(R.id.profile_image);
 
-        /*startButton = findViewById(R.id.start_button);
-        startButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(CreateEventActivity.this, ???.class);
-                startActivity(intent);
-            }
-        });*/
         modeResponse = USER_INFO;
         APIManager.getUserById(this, this, APIManager.getId());
     }
