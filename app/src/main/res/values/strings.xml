@@ -15,9 +15,9 @@
     <string name="profile_string">Profile</string>
     <string name="logout_text">Log out</string>
     <string name="profile_name_string">Name:</string>
-    <string name="default_profile_data">__________________________________</string>
-    <string name="profile_address_string">Address:</string>
-    <string name="profile_contact_number_string">Contact number:</string>
+    <string name="default_profile_data">________________</string>
+    <string name="profile_last_name_string">Last Name:</string>
+    <string name="profile_email_string">Email:</string>
     <string name="profile_id_string">ID:</string>
     <string name="profile_username_string">Username:</string>
     <string name="edit_profile_text">Edit Profile</string>
@@ -59,4 +59,11 @@
     <string name="toast_api_error_register">Error at creating a new user.</string>
     <string name="toast_api_error_login">Error at login with this username and password.</string>
     <string name="toast_api_error">Error at connecting to API.</string>
+    <string name="error_parsing_json_token">Error at parsing accessToken JSON.</string>
+    <string name="error_parsing_json_id">Error at parsing id JSON.</string>
+
+    <string name="profile_avg_score">Avg Score:</string>
+    <string name="profile_num_comm">Nº Comments:</string>
+    <string name="profile_perct">% commenters:</string>
+
 </resources>
