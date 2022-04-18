@@ -26,14 +26,14 @@ public class RegisterActivity extends AppCompatActivity implements ResponseListe
     private String confirmPassword;
     private String email;
     private String lastName;
-    private Button registerButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        getSupportActionBar().hide();
 
-        registerButton = findViewById(R.id.register_button_sign_up);
+        Button registerButton = findViewById(R.id.register_button_sign_up);
 
         usernameText = findViewById(R.id.username_input_sign_up);
         emailText = findViewById(R.id.email_input_sign_up);
@@ -54,10 +54,10 @@ public class RegisterActivity extends AppCompatActivity implements ResponseListe
                     if (password.equals(confirmPassword)) {
                         APIManager.postUser(view.getContext(), RegisterActivity.this, username, lastName, password, email, " ");
                     } else {
-                        Toast.makeText(view.getContext(), "Passwords don't match.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(view.getContext(), R.string.toast_error_password_match, Toast.LENGTH_LONG).show();
                     }
                 } else {
-                    Toast.makeText(view.getContext(), "One or more empty inputs.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(view.getContext(), R.string.toast_empty, Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -71,6 +71,6 @@ public class RegisterActivity extends AppCompatActivity implements ResponseListe
 
     @Override
     public void onError(VolleyError error) {
-        Toast.makeText(this, "ERROR API " + error, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, R.string.toast_api_error_register, Toast.LENGTH_LONG).show();
     }
 }
