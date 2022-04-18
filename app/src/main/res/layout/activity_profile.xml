@@ -8,67 +8,7 @@
     tools:layout_editor_absoluteY="6dp">
 
     <TextView
-        android:id="@+id/name_id_profile"
-        android:layout_width="320dp"
-        android:layout_height="28dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/default_profile_data"
-        android:textAlignment="textStart"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username_user_profile" />
-
-    <TextView
-        android:id="@+id/id_profile_text"
-        android:layout_width="0dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/profile_id_string"
-        android:textAlignment="textStart"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/name_id_profile"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username_profile_text" />
-
-    <TextView
-        android:id="@+id/username_user_profile"
-        android:layout_width="245dp"
-        android:layout_height="27dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/default_profile_data"
-        android:textAlignment="textStart"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contact_number_user_profile" />
-
-    <TextView
-        android:id="@+id/username_profile_text"
-        android:layout_width="103dp"
-        android:layout_height="26dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/profile_username_string"
-        android:textAlignment="textStart"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/username_user_profile"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contact_number_profile_text" />
-
-    <TextView
-        android:id="@+id/contact_number_user_profile"
+        android:id="@+id/text_perct"
         android:layout_width="190dp"
         android:layout_height="29dp"
         android:layout_marginTop="8dp"
@@ -79,42 +19,136 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/address_user_profile" />
+        app:layout_constraintTop_toBottomOf="@+id/text_num_comm" />
 
     <TextView
-        android:id="@+id/contact_number_profile_text"
-        android:layout_width="156dp"
-        android:layout_height="28dp"
+        android:id="@+id/label_perct"
+        android:layout_width="154dp"
+        android:layout_height="29dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
-        android:text="@string/profile_contact_number_string"
+        android:layout_marginEnd="3dp"
+        android:text="@string/profile_perct"
         android:textAlignment="textStart"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/contact_number_user_profile"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toStartOf="@+id/text_perct"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/address_profile_text" />
+        app:layout_constraintTop_toBottomOf="@+id/label_num_comm" />
+
+    <TextView
+        android:id="@+id/text_num_comm"
+        android:layout_width="190dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/default_profile_data"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_avg_score" />
+
+    <TextView
+        android:id="@+id/label_num_comm"
+        android:layout_width="154dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="3dp"
+        android:text="@string/profile_num_comm"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/text_num_comm"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/label_avg_score" />
+
+
+    <TextView
+        android:id="@+id/text_avg_score"
+        android:layout_width="190dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/default_profile_data"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email_text" />
+
+    <TextView
+        android:id="@+id/label_avg_score"
+        android:layout_width="154dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="3dp"
+        android:text="@string/profile_avg_score"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/text_avg_score"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email_profile_text" />
+
+
+    <TextView
+        android:id="@+id/email_text"
+        android:layout_width="190dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/default_profile_data"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lastname_text" />
+
+    <TextView
+        android:id="@+id/email_profile_text"
+        android:layout_width="154dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="3dp"
+        android:text="@string/profile_email_string"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/email_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/label_lastname" />
 
     <TextView
         android:id="@+id/name_profile_text"
-        android:layout_width="59dp"
-        android:layout_height="30dp"
+        android:layout_width="154dp"
+        android:layout_height="29dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="3dp"
         android:text="@string/profile_name_string"
         android:textAlignment="textStart"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/name_user_profile"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_image" />
 
     <TextView
         android:id="@+id/name_user_profile"
-        android:layout_width="286dp"
-        android:layout_height="30dp"
+        android:layout_width="190dp"
+        android:layout_height="29dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:text="@string/default_profile_data"
@@ -126,11 +160,11 @@
         app:layout_constraintTop_toBottomOf="@+id/profile_image" />
 
     <TextView
-        android:id="@+id/address_user_profile"
-        android:layout_width="266dp"
-        android:layout_height="28dp"
+        android:id="@+id/lastname_text"
+        android:layout_width="190dp"
+        android:layout_height="29dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="28dp"
+        android:layout_marginEnd="32dp"
         android:text="@string/default_profile_data"
         android:textAlignment="textStart"
         android:textColor="@color/black"
@@ -140,18 +174,18 @@
         app:layout_constraintTop_toBottomOf="@+id/name_user_profile" />
 
     <TextView
-        android:id="@+id/address_profile_text"
-        android:layout_width="85dp"
-        android:layout_height="28dp"
+        android:id="@+id/label_lastname"
+        android:layout_width="154dp"
+        android:layout_height="29dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
-        android:text="@string/profile_address_string"
+        android:layout_marginEnd="3dp"
+        android:text="@string/profile_last_name_string"
         android:textAlignment="textStart"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/address_user_profile"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toStartOf="@+id/lastname_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name_profile_text" />
 

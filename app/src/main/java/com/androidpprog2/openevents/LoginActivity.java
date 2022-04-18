@@ -2,6 +2,7 @@ package com.androidpprog2.openevents;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +14,7 @@ import com.android.volley.VolleyError;
 import com.androidpprog2.openevents.api.APIManager;
 import com.androidpprog2.openevents.api.ResponseListener;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity implements ResponseListener {
@@ -58,15 +60,26 @@ public class LoginActivity extends AppCompatActivity implements ResponseListener
 
     @Override
     public void onResponse(String response) {
-        try {
-            JSONObject jsonObject = new JSONObject(response);
-            String token = jsonObject.getString("accessToken");
-            APIManager.setToken(token);
-        } catch (Exception e) {
-            Toast.makeText(this, R.string.toast_api_error, Toast.LENGTH_LONG).show();
+        if (APIManager.isTokenNull()) {
+            try {
+                JSONObject jsonObject = new JSONObject(response);
+                String token = jsonObject.getString("accessToken");
+                APIManager.setToken(token);
+                APIManager.setEmailAndGetId(this, this, email);
+            } catch (Exception e) {
+                Toast.makeText(this, R.string.error_parsing_json_token, Toast.LENGTH_LONG).show();
+            }
+        } else {
+            try {
+                JSONArray jsonArray = new JSONArray(response);
+                int id = jsonArray.getJSONObject(0).getInt("id");
+                APIManager.setId(id);
+                Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+                startActivity(intent);
+            } catch (Exception e) {
+                Toast.makeText(this, R.string.error_parsing_json_id, Toast.LENGTH_LONG).show();
+            }
         }
-        Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
-        startActivity(intent);
     }
 
     @Override

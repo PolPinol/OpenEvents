@@ -16,6 +16,7 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+        getSupportActionBar().hide();
 
         manageEventsButton = findViewById(R.id.manage_events_button);
         manageEventsButton.setOnClickListener(new View.OnClickListener() {

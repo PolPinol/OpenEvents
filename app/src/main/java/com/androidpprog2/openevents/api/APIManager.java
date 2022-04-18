@@ -44,13 +44,32 @@ public class APIManager {
     private static final String EVENT_ID = "{event_id}";
 
     private static String token;
+    private static String email;
+    private static int id;
 
     public APIManager() {
 
     }
 
+    public static boolean isTokenNull() {
+        return APIManager.token == null;
+    }
+
     public static void setToken(String token) {
         APIManager.token = token;
+    }
+
+    public static void setId(int id) {
+        APIManager.id = id;
+    }
+
+    public static int getId() {
+        return APIManager.id;
+    }
+
+    public static void setEmailAndGetId(Context context, ResponseListener listener, String email) {
+        APIManager.email = email;
+        getUsersFiltered(context, listener, email);
     }
 
     // POST METHOD
@@ -93,20 +112,16 @@ public class APIManager {
     // GET METHOD
     // Searches users with a name, last name or email matching the value of the query parameter
     public static void getUsersFiltered(Context context, ResponseListener listener, String s) {
-        Map<String, String> map = new HashMap<>();
-        map.put("s", s);
+        String url = ENDPOINT_USERS_SEARCH + "?s=" + s;
 
-        makeRequest(context, ENDPOINT_USERS_SEARCH, Request.Method.GET, listener, map);
+        makeRequest(context, url, Request.Method.GET, listener, null);
     }
 
     // GET METHOD
     // Gets the user statistics: average score given for events "puntuation", number of comments written for
     // events, and percentage of users with lower number of comments than this user.
     public static void getUserStats(Context context, ResponseListener listener, int id) {
-        Map<String, String> map = new HashMap<>();
-        map.put("id", Integer.toString(id));
-
-        makeRequest(context, ENDPOINT_USERS_STATS.replace(ID, Integer.toString(id)), Request.Method.GET, listener, map);
+        makeRequest(context, ENDPOINT_USERS_STATS.replace(ID, Integer.toString(id)), Request.Method.GET, listener, null);
     }
 
     // PUT METHOD
@@ -413,7 +428,6 @@ public class APIManager {
         map.put("id", Integer.toString(id));
 
         makeRequest(context, ENDPOINT_FRIENDS_ID, Request.Method.PUT, listener, map);
-
     }
 
     // DELETE METHOD
@@ -441,7 +455,7 @@ public class APIManager {
                 params.put("Content-Type","application/x-www-form-urlencoded");
 
                 if (token != null) {
-                    params.put("Authorization", BEARER + token);
+                    params.put("Authorization", BEARER + APIManager.token);
                 }
 
                 return params;
