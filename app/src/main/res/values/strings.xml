@@ -10,6 +10,7 @@
     <string name="sign_up_string">Sign up</string>
     <string name="get_started_string">Let\'s get started</string>
     <string name="email_text_holder">Email</string>
+    <string name="last_name_text_holder">Last Name</string>
     <string name="confirm_password_text_holder">Confirm password</string>
     <string name="profile_string">Profile</string>
     <string name="logout_text">Log out</string>
