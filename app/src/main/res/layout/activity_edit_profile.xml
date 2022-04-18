@@ -5,26 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/sign_up_text"
-        android:layout_width="411dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="36dp"
-        android:text="@string/sign_up_string"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/edit_profile_text"
         android:layout_width="0dp"
         android:layout_height="45dp"
-        android:layout_marginTop="4dp"
-        android:text="@string/get_started_string"
+        android:layout_marginTop="68dp"
+        android:text="@string/edit_profile_string"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="32sp"
@@ -32,8 +19,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sign_up_text" />
-
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/image_edit"
@@ -43,8 +29,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/custom_edit_text"
-        android:hint="@string/confirm_password_text_holder"
-        android:inputType="textPassword"
+        android:hint="@string/image_edit_string"
         android:paddingStart="15dp"
         android:paddingEnd="15dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -120,14 +105,14 @@
         app:layout_constraintTop_toBottomOf="@+id/name_edit" />
 
     <Button
-        android:id="@+id/edit_profile_button"
+        android:id="@+id/button_complete_edit"
         android:layout_width="0dp"
         android:layout_height="49dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="44dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/big_radius_button"
-        android:text="@string/register_text"
+        android:text="@string/edit_button_text"
         android:textAllCaps="false"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"

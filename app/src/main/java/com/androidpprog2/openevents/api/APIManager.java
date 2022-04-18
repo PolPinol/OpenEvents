@@ -107,10 +107,7 @@ public class APIManager {
 
     // GET METHOD
     public static void getUserById(Context context, ResponseListener listener, int id) {
-        Map<String, String> map = new HashMap<>();
-        map.put("id", Integer.toString(id));
-
-        makeRequest(context, ENDPOINT_USERS_ID.replace(ID, Integer.toString(id)), Request.Method.GET, listener, map);
+        makeRequest(context, ENDPOINT_USERS_ID.replace(ID, Integer.toString(id)), Request.Method.GET, listener, null);
     }
 
     // GET METHOD
@@ -130,13 +127,7 @@ public class APIManager {
 
     // PUT METHOD
     // Edits specified fields of the authenticated user
-    public static void editCurrentUser(Context context, ResponseListener listener, String name, String last_name, String email, String image) {
-        Map<String, String> map = new HashMap<>();
-        map.put("name", name);
-        map.put("last_name", last_name);
-        map.put("email", email);
-        map.put("image", image);
-
+    public static void editCurrentUser(Context context, ResponseListener listener, Map<String, String> map) {
         makeRequest(context, ENDPOINT_USERS, Request.Method.PUT, listener, map);
     }
 

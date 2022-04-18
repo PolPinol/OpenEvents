@@ -1,6 +1,9 @@
 package com.androidpprog2.openevents;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,6 +55,15 @@ public class ProfileActivity extends AppCompatActivity implements ResponseListen
 
         modeResponse = USER_INFO;
         APIManager.getUserById(this, this, APIManager.getId());
+
+        Button editButton = findViewById(R.id.edit_profile);
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ProfileActivity.this, EditProfileActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
