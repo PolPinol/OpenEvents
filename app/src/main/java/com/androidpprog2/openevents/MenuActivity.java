@@ -7,10 +7,15 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.VolleyError;
+import com.androidpprog2.openevents.api.APIManager;
+import com.androidpprog2.openevents.api.ResponseListener;
+
 public class MenuActivity extends AppCompatActivity {
-    Button manageEventsButton;
-    Button searchButton;
-    Button profileButton;
+    private Button manageEventsButton;
+    private Button searchButton;
+    private Button profileButton;
+    private Button logoutButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +46,16 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MenuActivity.this, ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        logoutButton = findViewById(R.id.logout_button);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                APIManager.logout();
+                Intent intent = new Intent(MenuActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
