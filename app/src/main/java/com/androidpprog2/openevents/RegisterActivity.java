@@ -1,9 +1,7 @@
 package com.androidpprog2.openevents;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,13 +31,13 @@ public class RegisterActivity extends AppCompatActivity implements ResponseListe
         setContentView(R.layout.activity_register);
         getSupportActionBar().hide();
 
-        Button registerButton = findViewById(R.id.register_button_sign_up);
+        Button registerButton = findViewById(R.id.edit_profile_button);
 
-        usernameText = findViewById(R.id.username_input_sign_up);
-        emailText = findViewById(R.id.email_input_sign_up);
-        passwordText = findViewById(R.id.password_input_sign_up);
-        confirmPasswordText = findViewById(R.id.confirm_password_input_sign_up);
-        lastNameText = findViewById(R.id.last_name_input_sign_up);
+        usernameText = findViewById(R.id.name_edit);
+        emailText = findViewById(R.id.email_edit);
+        passwordText = findViewById(R.id.password_edit);
+        confirmPasswordText = findViewById(R.id.image_edit);
+        lastNameText = findViewById(R.id.lastname_edit);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override

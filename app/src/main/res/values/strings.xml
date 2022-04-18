@@ -61,9 +61,11 @@
     <string name="toast_api_error">Error at connecting to API.</string>
     <string name="error_parsing_json_token">Error at parsing accessToken JSON.</string>
     <string name="error_parsing_json_id">Error at parsing id JSON.</string>
-
     <string name="profile_avg_score">Avg Score:</string>
     <string name="profile_num_comm">Nº Comments:</string>
     <string name="profile_perct">% commenters:</string>
-
+    <string name="edit_profile_string">Edit Profile</string>
+    <string name="image_edit_string">Image Link</string>
+    <string name="edit_button_text">Edit</string>
+    <string name="toast_api_error_edit">Error at trying to edit these parameters.</string>
 </resources>
