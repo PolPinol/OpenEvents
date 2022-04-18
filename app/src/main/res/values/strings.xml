@@ -57,4 +57,6 @@
     <string name="toast_empty">One or more empty inputs.</string>
     <string name="toast_error_password_match">Passwords don\'t match.</string>
     <string name="toast_api_error_register">Error at creating a new user.</string>
+    <string name="toast_api_error_login">Error at login with this username and password.</string>
+    <string name="toast_api_error">Error at connecting to API.</string>
 </resources>
