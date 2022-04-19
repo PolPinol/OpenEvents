@@ -43,7 +43,7 @@
     <string name="search_user_text">Search User</string>
     <string name="manage_friend_requests_text">Manage Friend Requests</string>
     <string name="chat_string">Chat</string>
-    <string name="instructions_serch_string">Introduce the name of the user that you want to search:</string>
+    <string name="instructions_serch_string">Introduce the email of the user that you want to search:</string>
     <string name="user_profile_string">User Profile</string>
     <string name="send_friend_request_text">Send Friend Request</string>
     <string name="accept_string">Accept</string>
@@ -68,4 +68,6 @@
     <string name="image_edit_string">Image Link</string>
     <string name="edit_button_text">Edit</string>
     <string name="toast_api_error_edit">Error at trying to edit these parameters.</string>
+    <string name="add_friend_string">Add friend</string>
+    <string name="toast_error_user_exists">This email doesn\'t exist.</string>
 </resources>

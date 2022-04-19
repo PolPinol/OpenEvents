@@ -224,7 +224,7 @@
         android:layout_marginEnd="64dp"
         android:layout_marginBottom="60dp"
         android:background="@drawable/small_radius_button"
-        android:text="@string/edit_profile_text"
+        android:text="@string/add_friend_string"
         android:textAllCaps="false"
         android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
