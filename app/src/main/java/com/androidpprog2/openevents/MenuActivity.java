@@ -1,11 +1,9 @@
 package com.androidpprog2.openevents;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 
@@ -39,7 +37,7 @@ public class MenuActivity extends AppCompatActivity {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MenuActivity.this, SearchActivity.class);
+                Intent intent = new Intent(MenuActivity.this, SocialMenuActivity.class);
                 startActivity(intent);
             }
         });

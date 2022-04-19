@@ -13,6 +13,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OpenEvents">
         <activity
+            android:name=".chat.ChatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".friendList.FriendListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".friendRequests.FriendRequestsActivity"
+            android:exported="false" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="YOUR_API_KEY" />
+
+        <activity
             android:name=".DetailEventActivity"
             android:exported="false" />
         <activity
@@ -31,7 +45,7 @@
             android:name=".myEvents.MyEventsActivity"
             android:exported="false" />
         <activity
-            android:name=".SearchActivity"
+            android:name=".SocialMenuActivity"
             android:exported="false" />
         <activity
             android:name=".SearchUserActivity"

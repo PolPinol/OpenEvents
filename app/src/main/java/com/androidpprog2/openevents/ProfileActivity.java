@@ -56,7 +56,7 @@ public class ProfileActivity extends AppCompatActivity implements ResponseListen
         modeResponse = USER_INFO;
         APIManager.getUserById(this, this, APIManager.getId());
 
-        Button editButton = findViewById(R.id.remove_event_btn);
+        Button editButton = findViewById(R.id.add_friend_btn);
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
