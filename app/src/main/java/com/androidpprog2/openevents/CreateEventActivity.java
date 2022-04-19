@@ -1,7 +1,6 @@
 package com.androidpprog2.openevents;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.content.res.AppCompatResources;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +12,7 @@ import android.widget.Toast;
 import com.android.volley.VolleyError;
 import com.androidpprog2.openevents.api.APIManager;
 import com.androidpprog2.openevents.api.ResponseListener;
+import com.androidpprog2.openevents.myEvents.MyEventsActivity;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -42,16 +42,16 @@ public class CreateEventActivity extends AppCompatActivity implements ResponseLi
         setContentView(R.layout.activity_create_event);
         getSupportActionBar().hide();
 
-        nameText = findViewById(R.id.name_input_create);
-        imageText = findViewById(R.id.image_input_create);
-        locationText = findViewById(R.id.location_input_create);
-        descriptionText = findViewById(R.id.description_input_create);
-        startDateText = findViewById(R.id.starting_date_input_create);
-        endDateText = findViewById(R.id.finishing_date_input_create);
-        numPartText = findViewById(R.id.number_of_participants_input_create);
-        typeText = findViewById(R.id.type_input_create);
+        nameText = findViewById(R.id.name_input_create_2);
+        imageText = findViewById(R.id.image_input_create_2);
+        locationText = findViewById(R.id.location_input_create_2);
+        descriptionText = findViewById(R.id.description_input_create_2);
+        startDateText = findViewById(R.id.starting_date_input_create_2);
+        endDateText = findViewById(R.id.finishing_date_input_create_2);
+        numPartText = findViewById(R.id.number_of_participants_input_create_2);
+        typeText = findViewById(R.id.type_input_create_2);
 
-        Button createButton = findViewById(R.id.create_button_create);
+        Button createButton = findViewById(R.id.editButtonEvent);
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -98,6 +98,7 @@ public class CreateEventActivity extends AppCompatActivity implements ResponseLi
     public void onResponse(String response) {
         Intent intent = new Intent(CreateEventActivity.this, MyEventsActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override

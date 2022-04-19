@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OpenEvents">
         <activity
+            android:name=".DetailEventActivity"
+            android:exported="false" />
+        <activity
             android:name=".SearchedUserProfile"
             android:exported="false" />
         <activity
@@ -25,7 +28,7 @@
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".MyEventsActivity"
+            android:name=".myEvents.MyEventsActivity"
             android:exported="false" />
         <activity
             android:name=".SearchActivity"
@@ -37,16 +40,13 @@
             android:name=".ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".ViewEventsActivity"
+            android:name=".ViewMyEventsActivity"
             android:exported="false" />
         <activity
             android:name=".EditEventActivity"
             android:exported="false" />
         <activity
             android:name=".CreateEventActivity"
-            android:exported="false" />
-        <activity
-            android:name=".EditEventSettingsActivity"
             android:exported="false" />
         <activity
             android:name=".MenuActivity"

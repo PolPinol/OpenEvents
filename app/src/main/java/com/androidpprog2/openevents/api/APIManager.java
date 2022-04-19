@@ -1,6 +1,7 @@
 package com.androidpprog2.openevents.api;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -56,6 +57,7 @@ public class APIManager {
     }
 
     public static void setToken(String token) {
+        Log.i("token", token);
         APIManager.token = token;
     }
 
@@ -230,17 +232,14 @@ public class APIManager {
     // GET METHOD
     // Gets all future events
     public static void getAllEvent(Context context, ResponseListener listener) {
-        makeRequest(context, ENDPOINT_EVENTS, Request.Method.GET, listener, null);
+        String url = ENDPOINT_EVENTS_SEARCH + "?location=";
+        makeRequest(context, url, Request.Method.GET, listener, null);
     }
 
     // GET METHOD
     // Gets event by id
     public static void getEventById(Context context, ResponseListener listener, int id) {
-        Map<String, String> map = new HashMap<>();
-        map.put("id", Integer.toString(id));
-
-        makeRequest(context, ENDPOINT_EVENTS_ID.replace(ID, Integer.toString(id)), Request.Method.GET, listener, map);
-
+        makeRequest(context, ENDPOINT_EVENTS_ID.replace(ID, Integer.toString(id)), Request.Method.GET, listener, null);
     }
 
     // GET METHOD
@@ -263,20 +262,14 @@ public class APIManager {
 
     // PUT METHOD
     // Edits specified fields of the event with matching id
-    public static void putEventById(Context context, ResponseListener listener, int id) {
-        Map<String, String> map = new HashMap<>();
-        map.put("id", Integer.toString(id));
-
+    public static void putEventById(Context context, ResponseListener listener, int id, Map<String, String> map) {
         makeRequest(context, ENDPOINT_EVENTS_ID.replace(ID, Integer.toString(id)), Request.Method.PUT, listener, map);
     }
 
     // DELETE METHOD
     // Deletes event with matching id
     public static void deleteEventById(Context context, ResponseListener listener, int id) {
-        Map<String, String> map = new HashMap<>();
-        map.put("id", Integer.toString(id));
-
-        makeRequest(context, ENDPOINT_EVENTS_ID.replace(ID, Integer.toString(id)), Request.Method.DELETE, listener, map);
+        makeRequest(context, ENDPOINT_EVENTS_ID.replace(ID, Integer.toString(id)), Request.Method.DELETE, listener, null);
     }
 
     // GET METHOD
@@ -310,10 +303,7 @@ public class APIManager {
 
     // PUT METHOD
     // Edits assistance of authenticated user for the event with matching id
-    public static void editEventAssistanceById(Context context, ResponseListener listener, int id) {
-        Map<String, String> map = new HashMap<>();
-        map.put("id", Integer.toString(id));
-
+    public static void editEventAssistanceById(Context context, ResponseListener listener, int id, Map<String, String> map) {
         makeRequest(context, ENDPOINT_EVENTS_ASSIS.replace(ID, Integer.toString(id)), Request.Method.PUT, listener, map);
     }
 

@@ -45,13 +45,13 @@ public class SearchedUserProfile extends AppCompatActivity implements ResponseLi
 
         this.id = getIntent().getExtras().getInt("ARGUMENT_OBJECT_ID");
 
-        nameTextView = findViewById(R.id.name_user_profile);
-        lastNameTextView = findViewById(R.id.lastname_text);
-        emailTextView = findViewById(R.id.email_text);
-        avgScoreTextView = findViewById(R.id.text_avg_score);
-        numCommsTextView = findViewById(R.id.text_num_comm);
-        perctTextView = findViewById(R.id.text_perct);
-        imageTextView = findViewById(R.id.profile_image);
+        nameTextView = findViewById(R.id.name_event_show);
+        lastNameTextView = findViewById(R.id.location_text_show);
+        emailTextView = findViewById(R.id.descrption_show_text);
+        avgScoreTextView = findViewById(R.id.startdate_show);
+        numCommsTextView = findViewById(R.id.endDate_show);
+        perctTextView = findViewById(R.id.numpart_show);
+        imageTextView = findViewById(R.id.image_event_show);
 
         modeResponse = USER_INFO;
         APIManager.getUserById(this, this, this.id);

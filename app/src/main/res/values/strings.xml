@@ -61,6 +61,7 @@
     <string name="toast_api_error">Error at connecting to API.</string>
     <string name="error_parsing_json_token">Error at parsing accessToken JSON.</string>
     <string name="error_parsing_json_id">Error at parsing id JSON.</string>
+    <string name="error_parsing_json">Error at parsing JSON.</string>
     <string name="profile_avg_score">Avg Score:</string>
     <string name="profile_num_comm">Nº Comments:</string>
     <string name="profile_perct">% commenters:</string>
@@ -79,4 +80,9 @@
     <string name="toast_integer_error">Error at integer format.</string>
     <string name="toast_api_error_create_event">Error at creating a new event.</string>
     <string name="toast_date_endstart">End Date is before than Start Date.</string>
+    <string name="event_string">Event</string>
+    <string name="number_of_participants_text">Nº Participants</string>
+    <string name="remove_event_text">Remove</string>
+    <string name="event_removed">The event has been removed.</string>
+    <string name="edit_event_string">Edit Event</string>
 </resources>
