@@ -11,6 +11,7 @@ public class ViewEventsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_current_events);
+        getSupportActionBar().hide();
 
         /*startButton = findViewById(R.id.start_button);
         startButton.setOnClickListener(new View.OnClickListener() {
