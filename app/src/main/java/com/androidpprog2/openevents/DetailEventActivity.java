@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -14,11 +13,9 @@ import android.widget.Toast;
 import com.android.volley.VolleyError;
 import com.androidpprog2.openevents.api.APIManager;
 import com.androidpprog2.openevents.api.ResponseListener;
-import com.androidpprog2.openevents.myEvents.MyEventsActivity;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 public class DetailEventActivity extends AppCompatActivity implements ResponseListener {
     private final static String NO_IMAGE_URL = "https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg";
@@ -78,7 +75,7 @@ public class DetailEventActivity extends AppCompatActivity implements ResponseLi
             }
         });
 
-        removeButton = findViewById(R.id.remove_event_btn);
+        removeButton = findViewById(R.id.add_friend_btn);
         removeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

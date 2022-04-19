@@ -217,7 +217,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/remove_event_btn"
+        android:id="@+id/add_friend_btn"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="64dp"

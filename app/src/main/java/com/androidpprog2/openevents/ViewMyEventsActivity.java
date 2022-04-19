@@ -1,17 +1,8 @@
 package com.androidpprog2.openevents;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.util.AttributeSet;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,10 +11,7 @@ import com.android.volley.VolleyError;
 import com.androidpprog2.openevents.api.APIManager;
 import com.androidpprog2.openevents.api.ResponseListener;
 import com.androidpprog2.openevents.entities.Event;
-import com.androidpprog2.openevents.myEvents.MyEventHolder;
-import com.androidpprog2.openevents.myEvents.MyEventsActivity;
 import com.androidpprog2.openevents.myEvents.MyEventsAdapter;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 

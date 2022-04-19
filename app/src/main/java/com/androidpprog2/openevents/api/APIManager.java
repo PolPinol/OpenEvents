@@ -363,10 +363,9 @@ public class APIManager {
         Map<String, String> map = new HashMap<>();
         map.put("content", content);
         map.put("user_id_send", Integer.toString(user_id_send));
-        map.put("event_id_recieved", Integer.toString(user_id_recived));
+        map.put("user_id_recived", Integer.toString(user_id_recived));
 
         makeRequest(context, ENDPOINT_MESSAGES, Request.Method.POST, listener, map);
-
     }
 
     // GET METHOD
@@ -379,15 +378,12 @@ public class APIManager {
     // GET METHOD
     // Gets all messages between the external user with matching id and the authenticated user
     public static void getAllMessages(Context context, ResponseListener listener, int id) {
-        Map<String, String> map = new HashMap<>();
-        map.put("id", Integer.toString(id));
-
-        makeRequest(context, ENDPOINT_MESS_ID.replace(ID, Integer.toString(id)), Request.Method.GET, listener, map);
+        makeRequest(context, ENDPOINT_MESS_ID.replace(ID, Integer.toString(id)), Request.Method.GET, listener, null);
     }
 
     // GET METHOD
     // Gets all external users that have sent a friendship request to the authenticated user
-    public static void getFriends(Context context, ResponseListener listener) {
+    public static void getFriendRequests(Context context, ResponseListener listener) {
         makeRequest(context, ENDPOINT_FRIENDS_REQ, Request.Method.GET, listener, null);
     }
 
@@ -400,28 +396,19 @@ public class APIManager {
     // POST METHOD
     // Creates friendship request to external user with match id from authenticated user
     public static void createFriendship(Context context, ResponseListener listener, int id) {
-        Map<String, String> map = new HashMap<>();
-        map.put("id", Integer.toString(id));
-
-        makeRequest(context, ENDPOINT_FRIENDS_ID.replace(ID, Integer.toString(id)), Request.Method.POST, listener, map);
+        makeRequest(context, ENDPOINT_FRIENDS_ID.replace(ID, Integer.toString(id)), Request.Method.POST, listener, null);
     }
 
     // PUT METHOD
     // Accepts friendship request from external user to authenticated user
     public static void acceptFriendshipRequest(Context context, ResponseListener listener, int id) {
-        Map<String, String> map = new HashMap<>();
-        map.put("id", Integer.toString(id));
-
-        makeRequest(context, ENDPOINT_FRIENDS_ID, Request.Method.PUT, listener, map);
+        makeRequest(context, ENDPOINT_FRIENDS_ID.replace(ID, Integer.toString(id)), Request.Method.PUT, listener, null);
     }
 
     // DELETE METHOD
     // Rejects friendship request from external user to authenticated user
-    public static void deleteFriend(Context context, ResponseListener listener, int id) {
-        Map<String, String> map = new HashMap<>();
-        map.put("id", Integer.toString(id));
-
-        makeRequest(context, ENDPOINT_FRIENDS_ID.replace(ID, Integer.toString(id)), Request.Method.DELETE, listener, map);
+    public static void declineFriendshipRequest(Context context, ResponseListener listener, int id) {
+        makeRequest(context, ENDPOINT_FRIENDS_ID.replace(ID, Integer.toString(id)), Request.Method.DELETE, listener, null);
     }
 
     // REQUEST METHOD
