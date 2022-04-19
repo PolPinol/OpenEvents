@@ -3,33 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:layout_editor_absoluteX="0dp"
-    tools:layout_editor_absoluteY="6dp">
+    android:layout_height="match_parent">
 
 
-    <TextView
-        android:id="@+id/instructions_text_edit"
-        android:layout_width="0dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="88dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/instructions_edit_string"
-        android:textAlignment="textStart"
-        android:textColor="@color/black"
-        android:textSize="19sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_text_edit" />
-
-    <TextView
-        android:id="@+id/edit_text_edit"
-        android:layout_width="411dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="84dp"
+    <Button
+        android:id="@+id/editButtonEvent"
+        android:layout_width="329dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="28dp"
+        android:background="@drawable/small_radius_button"
         android:text="@string/edit_string"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/type_input_create_2"
+        app:layout_constraintVertical_bias="0.343" />
+
+    <TextView
+        android:id="@+id/create_text"
+        android:layout_width="408dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="48dp"
+        android:text="@string/edit_event_string"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="38sp"
@@ -39,8 +37,89 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <EditText
-        android:id="@+id/name_input_edit"
+        android:id="@+id/number_of_participants_input_create_2"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/custom_edit_text"
+        android:hint="@string/number_of_participants_text_holder"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/finishing_date_input_create_2" />
+
+    <EditText
+        android:id="@+id/description_input_create_2"
+        android:layout_width="347dp"
+        android:layout_height="81dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/custom_edit_text"
+        android:hint="@string/description_text_holder"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/location_input_create_2" />
+
+    <EditText
+        android:id="@+id/type_input_create_2"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/custom_edit_text"
+        android:hint="@string/type_text_holder"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/number_of_participants_input_create_2" />
+
+    <EditText
+        android:id="@+id/image_input_create_2"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/custom_edit_text"
+        android:hint="@string/image_text_holder"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name_input_create_2" />
+
+    <EditText
+        android:id="@+id/location_input_create_2"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/custom_edit_text"
+        android:hint="@string/location_text_holder"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_input_create_2" />
+
+    <EditText
+        android:id="@+id/name_input_create_2"
         android:layout_width="0dp"
         android:layout_height="44dp"
         android:layout_marginStart="32dp"
@@ -53,23 +132,39 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/instructions_text_edit" />
+        app:layout_constraintTop_toBottomOf="@+id/create_text" />
 
-    <Button
-        android:id="@+id/edit_button_edit"
+    <EditText
+        android:id="@+id/finishing_date_input_create_2"
         android:layout_width="0dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="53dp"
-        android:layout_marginEnd="136dp"
-        android:background="@drawable/small_radius_button"
-        android:text="@string/edit_text"
-        android:textAllCaps="false"
-        android:textSize="20sp"
+        android:layout_height="44dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/custom_edit_text"
+        android:hint="@string/finishing_date_text_holder"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_input_edit" />
+        app:layout_constraintTop_toBottomOf="@+id/starting_date_input_create_2" />
+
+    <EditText
+        android:id="@+id/starting_date_input_create_2"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/custom_edit_text"
+        android:hint="@string/starting_date_text_holder"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description_input_create_2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

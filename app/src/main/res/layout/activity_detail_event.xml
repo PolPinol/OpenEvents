@@ -4,8 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:noHistory="true"
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="6dp">
+
+    <TextView
+        android:id="@+id/type_event_text"
+        android:layout_width="190dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/default_profile_data"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/numpart_show" />
+
+
+    <TextView
+        android:id="@+id/label_type_event"
+        android:layout_width="154dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="3dp"
+        android:text="@string/type_text_holder"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/numpart_show"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/label_num_part" />
 
     <TextView
         android:id="@+id/numpart_show"
@@ -28,7 +61,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="3dp"
-        android:text="@string/profile_perct"
+        android:text="@string/number_of_participants_text"
         android:textAlignment="textStart"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -58,7 +91,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="3dp"
-        android:text="@string/profile_num_comm"
+        android:text="@string/finishing_date_text_holder"
         android:textAlignment="textStart"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -82,34 +115,34 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descrption_show_text" />
 
+
     <TextView
         android:id="@+id/starting_date_label"
         android:layout_width="154dp"
         android:layout_height="29dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="39dp"
         android:layout_marginEnd="3dp"
-        android:text="@string/profile_avg_score"
+        android:text="@string/starting_date_text_holder"
         android:textAlignment="textStart"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/startdate_show"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/label_description_event" />
 
-
     <TextView
         android:id="@+id/descrption_show_text"
-        android:layout_width="190dp"
-        android:layout_height="29dp"
+        android:layout_width="192dp"
+        android:layout_height="60dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:text="@string/default_profile_data"
         android:textAlignment="textStart"
         android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/location_text_show" />
 
@@ -120,7 +153,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="3dp"
-        android:text="@string/profile_email_string"
+        android:text="@string/description_text_holder"
         android:textAlignment="textStart"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -136,7 +169,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="3dp"
-        android:text="@string/profile_name_string"
+        android:text="@string/name_text_holder"
         android:textAlignment="textStart"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -180,7 +213,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="3dp"
-        android:text="@string/profile_last_name_string"
+        android:text="@string/location_text_holder"
         android:textAlignment="textStart"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -194,11 +227,10 @@
         android:layout_width="411dp"
         android:layout_height="52dp"
         android:layout_marginTop="36dp"
-        android:text="@string/profile_string"
+        android:text="@string/event_string"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="42sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -217,19 +249,34 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/remove_event_btn"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:id="@+id/edit_event"
+        android:layout_width="120dp"
+        android:layout_height="0dp"
         android:layout_marginStart="64dp"
-        android:layout_marginEnd="64dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginEnd="43dp"
+        android:layout_marginBottom="28dp"
         android:background="@drawable/small_radius_button"
-        android:text="@string/add_friend_string"
+        android:text="@string/edit_button_text"
+        android:textAllCaps="false"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/remove_event_btn"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <Button
+        android:id="@+id/remove_event_btn"
+        android:layout_width="120dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="43dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="28dp"
+        android:background="@drawable/small_radius_button"
+        android:text="@string/remove_event_text"
         android:textAllCaps="false"
         android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/edit_event" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
