@@ -7,21 +7,21 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class ManageEventsActivity extends AppCompatActivity {
+public class MyEventsActivity extends AppCompatActivity {
     private Button createEventButton;
     private Button viewEventsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manage_events);
+        setContentView(R.layout.activity_my_events);
         getSupportActionBar().hide();
 
         createEventButton = findViewById(R.id.create_event_button);
         createEventButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ManageEventsActivity.this, CreateEventActivity.class);
+                Intent intent = new Intent(MyEventsActivity.this, CreateEventActivity.class);
                 startActivity(intent);
             }
         });
@@ -30,7 +30,7 @@ public class ManageEventsActivity extends AppCompatActivity {
         viewEventsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ManageEventsActivity.this, ViewEventsActivity.class);
+                Intent intent = new Intent(MyEventsActivity.this, ViewEventsActivity.class);
                 startActivity(intent);
             }
         });

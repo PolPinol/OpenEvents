@@ -31,8 +31,8 @@
     <string name="view_events_text">View my events</string>
     <string name="create_string">Create</string>
     <string name="name_text_holder">Name</string>
-    <string name="starting_date_text_holder">Starting Date</string>
-    <string name="finishing_date_text_holder">Finishing Date</string>
+    <string name="starting_date_text_holder">Starting Date (yyyy-MM-dd)</string>
+    <string name="finishing_date_text_holder">Finishing Date (yyyy-MM-dd)</string>
     <string name="number_of_participants_text_holder">Number of participants</string>
     <string name="search_image_text">Search Image</string>
     <string name="edit_string">Edit</string>
@@ -71,5 +71,12 @@
     <string name="add_friend_string">Add friend</string>
     <string name="toast_error_user_exists">This email doesn\'t exist.</string>
     <string name="allevents_text">All Events</string>
-
+    <string name="description_text_holder">Description</string>
+    <string name="type_text_holder">Type</string>
+    <string name="image_text_holder">Image</string>
+    <string name="location_text_holder">Location</string>
+    <string name="toast_date_error">Error at date format.</string>
+    <string name="toast_integer_error">Error at integer format.</string>
+    <string name="toast_api_error_create_event">Error at creating a new event.</string>
+    <string name="toast_date_endstart">End Date is before than Start Date.</string>
 </resources>

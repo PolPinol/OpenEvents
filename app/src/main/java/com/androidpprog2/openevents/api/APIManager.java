@@ -212,7 +212,7 @@ public class APIManager {
     // Creates a new event
     public static void postEvent(Context context, ResponseListener listener, String name, String image,
                           String location, String description, String eventStart_date,
-                          String eventEnd_date, int n_participators, String type) {
+                          String eventEnd_date, String n_participators, String type) {
 
         Map<String, String> map = new HashMap<>();
         map.put("name", name);
@@ -221,10 +221,10 @@ public class APIManager {
         map.put("description", description);
         map.put("eventStart_date", eventStart_date);
         map.put("eventEnd_date", eventEnd_date);
-        map.put("n_participators", Integer.toString(n_participators));
+        map.put("n_participators", n_participators);
         map.put("type", type);
 
-        makeRequest(context, ENDPOINT_EVENTS, Request.Method.GET, listener, map);
+        makeRequest(context, ENDPOINT_EVENTS, Request.Method.POST, listener, map);
     }
 
     // GET METHOD
