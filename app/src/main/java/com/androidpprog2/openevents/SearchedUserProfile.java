@@ -1,14 +1,11 @@
 package com.androidpprog2.openevents;
 
-import android.content.Intent;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.VolleyError;
 import com.androidpprog2.openevents.api.APIManager;
@@ -18,7 +15,7 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class ProfileActivity extends AppCompatActivity implements ResponseListener {
+public class SearchedUserProfile extends AppCompatActivity implements ResponseListener {
     private final static int USER_INFO = 0;
     private final static int USER_STATS = 1;
     private final static String NO_IMAGE_URL = "https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg";
@@ -38,12 +35,15 @@ public class ProfileActivity extends AppCompatActivity implements ResponseListen
     private String numComms;
     private String perct;
     private int modeResponse;
+    private int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_searched_user_profile);
         getSupportActionBar().hide();
+
+        this.id = getIntent().getExtras().getInt("ARGUMENT_OBJECT_ID");
 
         nameTextView = findViewById(R.id.name_user_profile);
         lastNameTextView = findViewById(R.id.lastname_text);
@@ -54,16 +54,9 @@ public class ProfileActivity extends AppCompatActivity implements ResponseListen
         imageTextView = findViewById(R.id.profile_image);
 
         modeResponse = USER_INFO;
-        APIManager.getUserById(this, this, APIManager.getId());
+        APIManager.getUserById(this, this, this.id);
 
-        Button editButton = findViewById(R.id.add_friend_button);
-        editButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ProfileActivity.this, EditProfileActivity.class);
-                startActivity(intent);
-            }
-        });
+        // button add friend
     }
 
     @Override
@@ -105,7 +98,6 @@ public class ProfileActivity extends AppCompatActivity implements ResponseListen
                 Toast.makeText(this, R.string.toast_api_error, Toast.LENGTH_LONG).show();
             }
         }
-
     }
 
     @Override

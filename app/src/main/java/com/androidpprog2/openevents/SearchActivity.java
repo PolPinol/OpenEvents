@@ -16,6 +16,7 @@ public class SearchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+        getSupportActionBar().hide();
 
         searchUserButton = findViewById(R.id.search_user_button);
         searchUserButton.setOnClickListener(new View.OnClickListener() {

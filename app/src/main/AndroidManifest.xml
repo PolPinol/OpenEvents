@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OpenEvents">
         <activity
+            android:name=".SearchedUserProfile"
+            android:exported="false" />
+        <activity
             android:name=".EditProfileActivity"
             android:exported="false" />
         <activity
