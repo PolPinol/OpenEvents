@@ -85,6 +85,14 @@
     <string name="remove_event_text">Remove</string>
     <string name="event_removed">The event has been removed.</string>
     <string name="edit_event_string">Edit Event</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="add_friend_ok">Sended friend request successfully.</string>
+    <string name="error_friend_api">Couldn\'t add friend.</string>
+    <string name="friend_request_text">Friend Requests</string>
+    <string name="accept_fr">Friend request managed successfully.</string>
+    <string name="chat_string">Chat</string>
+    <string name="friends_text">Friends</string>
+    <string name="message_text">Message</string>
     <string name="current_events_text">Current Events</string>
     <string name="category_string">Category</string>
     <string name="filters_string">Filters</string>

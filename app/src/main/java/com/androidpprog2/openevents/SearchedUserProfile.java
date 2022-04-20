@@ -2,7 +2,10 @@ package com.androidpprog2.openevents;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +21,7 @@ import org.json.JSONObject;
 public class SearchedUserProfile extends AppCompatActivity implements ResponseListener {
     private final static int USER_INFO = 0;
     private final static int USER_STATS = 1;
+    private final static int ADD_FRIEND = 2;
     private final static String NO_IMAGE_URL = "https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg";
 
     private TextView nameTextView;
@@ -57,6 +61,14 @@ public class SearchedUserProfile extends AppCompatActivity implements ResponseLi
         APIManager.getUserById(this, this, this.id);
 
         // button add friend
+        Button addFriend = findViewById(R.id.add_friend_btn);
+        addFriend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                modeResponse = ADD_FRIEND;
+                APIManager.createFriendship(view.getContext(), SearchedUserProfile.this, id);
+            }
+        });
     }
 
     @Override
@@ -97,11 +109,17 @@ public class SearchedUserProfile extends AppCompatActivity implements ResponseLi
             } catch (Exception e) {
                 Toast.makeText(this, R.string.toast_api_error, Toast.LENGTH_LONG).show();
             }
+        } else if (modeResponse == ADD_FRIEND) {
+            Toast.makeText(this, R.string.add_friend_ok, Toast.LENGTH_LONG).show();
         }
     }
 
     @Override
     public void onError(VolleyError error) {
-        Toast.makeText(this, R.string.toast_api_error, Toast.LENGTH_LONG).show();
+        if (modeResponse == ADD_FRIEND) {
+            Toast.makeText(this, R.string.error_friend_api, Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, R.string.toast_api_error, Toast.LENGTH_LONG).show();
+        }
     }
 }

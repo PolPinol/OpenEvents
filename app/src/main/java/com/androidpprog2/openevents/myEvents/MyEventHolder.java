@@ -34,7 +34,6 @@ public class MyEventHolder extends RecyclerView.ViewHolder implements View.OnCli
 
         this.activity = activity;
         itemView.setOnClickListener(this);
-
     }
 
     public void bind(Event event) {
