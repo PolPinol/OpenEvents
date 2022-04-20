@@ -16,6 +16,9 @@
             android:name=".DetailEventActivity"
             android:exported="false" />
         <activity
+            android:name=".allEvents.AllEventsActivity"
+            android:exported="false" />
+        <activity
             android:name=".SearchedUserProfile"
             android:exported="false" />
         <activity

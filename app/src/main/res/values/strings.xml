@@ -85,4 +85,10 @@
     <string name="remove_event_text">Remove</string>
     <string name="event_removed">The event has been removed.</string>
     <string name="edit_event_string">Edit Event</string>
+    <string name="current_events_text">Current Events</string>
+    <string name="category_string">Category</string>
+    <string name="filters_string">Filters</string>
+    <string name="popularity_string">Popularity</string>
+    <string name="event_name_text_holder">Event Name</string>
+    <string name="date_text_holder">Date</string>
 </resources>

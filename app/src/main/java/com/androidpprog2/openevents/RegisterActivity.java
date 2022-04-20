@@ -63,7 +63,7 @@ public class RegisterActivity extends AppCompatActivity implements ResponseListe
 
     @Override
     public void onResponse(String response) {
-        Intent intent = new Intent(RegisterActivity.this, MenuActivity.class);
+        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
         startActivity(intent);
     }
 

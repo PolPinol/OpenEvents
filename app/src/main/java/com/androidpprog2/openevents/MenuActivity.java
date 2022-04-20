@@ -11,6 +11,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.androidpprog2.openevents.allEvents.AllEventsActivity;
 import com.androidpprog2.openevents.api.APIManager;
 import com.androidpprog2.openevents.myEvents.MyEventsActivity;
 
@@ -19,6 +20,7 @@ public class MenuActivity extends AppCompatActivity {
     private Button searchButton;
     private Button profileButton;
     private Button logoutButton;
+    private Button allEventsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,16 @@ public class MenuActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        allEventsButton = findViewById(R.id.all_events_button);
+        allEventsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MenuActivity.this, AllEventsActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         logoutButton = findViewById(R.id.logout_button);
         logoutButton.setOnClickListener(new View.OnClickListener() {
