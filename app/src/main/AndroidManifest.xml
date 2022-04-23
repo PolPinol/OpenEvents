@@ -16,6 +16,9 @@
             android:name=".chat.ChatActivity"
             android:exported="false" />
         <activity
+            android:name=".DetailEnrollEventActivity"
+            android:exported="false" />
+        <activity
             android:name=".friendList.FriendListActivity"
             android:exported="false" />
         <activity

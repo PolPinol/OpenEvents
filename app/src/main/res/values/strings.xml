@@ -99,4 +99,10 @@
     <string name="popularity_string">Popularity</string>
     <string name="event_name_text_holder">Event Name</string>
     <string name="date_text_holder">Date</string>
+    <string name="delete_string">Delete</string>
+    <string name="enroll_string">Enroll</string>
+    <string name="enrolled_string">Enrolled</string>
+    <string name="unenroll_string">Unenroll</string>
+    <string name="rate_the_event_text">Rate the event:</string>
+    <string name="comments_string">Comments</string>
 </resources>
