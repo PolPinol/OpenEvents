@@ -105,10 +105,10 @@ public class AllEventsActivity extends AppCompatActivity implements ResponseList
                 typeField.getText().clear();
 
                 //Personalising selected color button
-                currentEventsButton.setTextColor(getColor(R.color.mid_grey));
+                currentEventsButton.setTextColor(getColor(R.color.white));
                 categoryButton.setTextColor(getColor(R.color.black));
-                filtersButton.setTextColor(getColor(R.color.mid_grey));
-                popularityButton.setTextColor(getColor(R.color.mid_grey));
+                filtersButton.setTextColor(getColor(R.color.white));
+                popularityButton.setTextColor(getColor(R.color.white));
 
                 // Realitzar la filtració per categoria
                 mode = MODE_CATEGORY;
@@ -130,10 +130,10 @@ public class AllEventsActivity extends AppCompatActivity implements ResponseList
                 eventNameField.getText().clear();
 
                 //Personalising selected color button
-                currentEventsButton.setTextColor(getColor(R.color.mid_grey));
-                categoryButton.setTextColor(getColor(R.color.mid_grey));
+                currentEventsButton.setTextColor(getColor(R.color.white));
+                categoryButton.setTextColor(getColor(R.color.white));
                 filtersButton.setTextColor(getColor(R.color.black));
-                popularityButton.setTextColor(getColor(R.color.mid_grey));
+                popularityButton.setTextColor(getColor(R.color.white));
 
                 eventList = new ArrayList<>();
                 updateUI();
@@ -248,9 +248,9 @@ public class AllEventsActivity extends AppCompatActivity implements ResponseList
                 dateField.setVisibility(View.GONE);
 
                 //Personalising selected color button
-                currentEventsButton.setTextColor(getColor(R.color.mid_grey));
-                categoryButton.setTextColor(getColor(R.color.mid_grey));
-                filtersButton.setTextColor(getColor(R.color.mid_grey));
+                currentEventsButton.setTextColor(getColor(R.color.white));
+                categoryButton.setTextColor(getColor(R.color.white));
+                filtersButton.setTextColor(getColor(R.color.white));
                 popularityButton.setTextColor(getColor(R.color.black));
 
                 // Realitzar el GET /events/best
@@ -273,9 +273,9 @@ public class AllEventsActivity extends AppCompatActivity implements ResponseList
 
         //Personalising selected color button
         currentEventsButton.setTextColor(getColor(R.color.black));
-        categoryButton.setTextColor(getColor(R.color.mid_grey));
-        filtersButton.setTextColor(getColor(R.color.mid_grey));
-        popularityButton.setTextColor(getColor(R.color.mid_grey));
+        categoryButton.setTextColor(getColor(R.color.white));
+        filtersButton.setTextColor(getColor(R.color.white));
+        popularityButton.setTextColor(getColor(R.color.white));
 
         // Realitzar el GET /events
     }
