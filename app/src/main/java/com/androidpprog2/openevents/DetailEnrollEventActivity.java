@@ -42,7 +42,11 @@ import java.util.Map;
 public class DetailEnrollEventActivity extends AppCompatActivity implements ResponseListener {
     private final static String NO_IMAGE_URL = "https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg";
     private final static int EVENT_INFO = 0;
-    private final static int EVENT_REMOVE = 1;
+    private final static int EVENT_ASSIS = 1;
+    private final static int EVENT_ENROLL = 2;
+    private final static int EVENT_DESNENROLL = 3;
+    private final static int EVENT_COMMENT = 4;
+    private final static int  EVENT_RATING = 5;
 
     private int id_event;
     private int modeResponse;
@@ -98,10 +102,6 @@ public class DetailEnrollEventActivity extends AppCompatActivity implements Resp
         numPartTextView = findViewById(R.id.numpart_show);
         typeTextView = findViewById(R.id.type_event_text);
         this.id_event = getIntent().getExtras().getInt("ARGUMENT_EVENT_ID");
-        APIManager.getEventById(this, this, id_event);
-
-
-        Log.e( "ID_USER", String.valueOf(APIManager.getId()));
 
         enrollButton = findViewById(R.id.enroll_event_button);
         ratingBar = findViewById(R.id.ratingBar);
@@ -116,7 +116,6 @@ public class DetailEnrollEventActivity extends AppCompatActivity implements Resp
         enrolledText.setVisibility(GONE); //TODO: only gone the first time
         enrollButton.setVisibility(GONE);
         postCommentButton.setVisibility(GONE);
-        APIManager.getEventById(this, DetailEnrollEventActivity.this, id_event);
 
         enrollButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,13 +123,13 @@ public class DetailEnrollEventActivity extends AppCompatActivity implements Resp
                 if (enrollButton.getText().equals(getString(R.string.enroll_string))) {
                     enrollButton.setText(getString(R.string.unenroll_string));
                     enrolledText.setVisibility(View.VISIBLE);
-                    APIManager.createAssistance(view.getContext(), DetailEnrollEventActivity.this, APIManager.getId(), id_event);
-
+                    modeResponse = EVENT_ENROLL;
+                    APIManager.createAssistance(view.getContext(), DetailEnrollEventActivity.this, id_event);
                 } else {
                     enrollButton.setText(getString(R.string.enroll_string));
                     enrolledText.setVisibility(GONE);
-                    APIManager.deleteAssistance(view.getContext(), DetailEnrollEventActivity.this, APIManager.getId(), id_event);
-
+                    modeResponse = EVENT_DESNENROLL;
+                    APIManager.deleteAssistance(view.getContext(), DetailEnrollEventActivity.this, id_event);
                 }
             }
         });
@@ -142,7 +141,7 @@ public class DetailEnrollEventActivity extends AppCompatActivity implements Resp
                 Map<String, String> map = new HashMap<>();
                 map.put("user_id", Integer.toString(APIManager.getId()));
                 map.put("event_id", Integer.toString(id_event));
-                APIManager.putCommentOrRate(view.getContext(), DetailEnrollEventActivity.this, APIManager.getId(), id_event, map);
+                //APIManager.putCommentOrRate(view.getContext(), DetailEnrollEventActivity.this, APIManager.getId(), id_event, map);
             }
         });
 
@@ -152,52 +151,119 @@ public class DetailEnrollEventActivity extends AppCompatActivity implements Resp
                 Map<String, String> map = new HashMap<>();
                 map.put("user_id", Integer.toString(APIManager.getId()));
                 map.put("event_id", Integer.toString(id_event));
-                APIManager.putCommentOrRate(view.getContext(), DetailEnrollEventActivity.this, APIManager.getId(), id_event, map);
+                //APIManager.putCommentOrRate(view.getContext(), DetailEnrollEventActivity.this, APIManager.getId(), id_event, map);
             }
         });
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+
+        modeResponse = EVENT_INFO;
+        APIManager.getEventById(this, this, id_event);
+    }
+
+    @Override
     public void onResponse(String response) {
-        if (modeResponse == EVENT_INFO) {
-            try {
-                JSONArray jsonArray = new JSONArray(response);
-
-                name = jsonArray.getJSONObject(0).getString("name");
-                image = jsonArray.getJSONObject(0).getString("image");
-                location = jsonArray.getJSONObject(0).getString("location");
-                description = jsonArray.getJSONObject(0).getString("description");
-                startDate = jsonArray.getJSONObject(0).getString("eventStart_date");
-                endDate = jsonArray.getJSONObject(0).getString("eventEnd_date");
-                numPart = jsonArray.getJSONObject(0).getInt("n_participators");
-                type = jsonArray.getJSONObject(0).getString("type");
-
-                nameTextView.setText(name);
-
+        switch (modeResponse) {
+            case EVENT_INFO:
                 try {
-                    Picasso.get().load(image).into(imageTextView);
+                    JSONArray jsonArray = new JSONArray(response);
+
+                    name = jsonArray.getJSONObject(0).getString("name");
+                    image = jsonArray.getJSONObject(0).getString("image");
+                    location = jsonArray.getJSONObject(0).getString("location");
+                    description = jsonArray.getJSONObject(0).getString("description");
+                    startDate = jsonArray.getJSONObject(0).getString("eventStart_date");
+                    endDate = jsonArray.getJSONObject(0).getString("eventEnd_date");
+                    numPart = jsonArray.getJSONObject(0).getInt("n_participators");
+                    type = jsonArray.getJSONObject(0).getString("type");
+
+                    nameTextView.setText(name);
+                    try {
+                        Picasso.get().load(image).into(imageTextView);
+                    } catch (Exception e) {
+                        Picasso.get().load(NO_IMAGE_URL).into(imageTextView);
+                    }
+
+                    locationTextView.setText(location);
+                    descriptionTextView.setText(description);
+                    startDateTextView.setText(startDate);
+                    endDateTextView.setText(endDate);
+                    numPartTextView.setText(String.valueOf(numPart));
+                    typeTextView.setText(type);
+
+                    showPossibleActions(startDate, endDate);
+
+                    modeResponse = EVENT_ASSIS;
+                    APIManager.getEventAssistancesById(this, DetailEnrollEventActivity.this, id_event);
                 } catch (Exception e) {
-                    Picasso.get().load(NO_IMAGE_URL).into(imageTextView);
+                    e.printStackTrace();
+                    Toast.makeText(this, R.string.error_parsing_json, Toast.LENGTH_LONG).show();
                 }
+                break;
 
-                locationTextView.setText(location);
-                descriptionTextView.setText(description);
-                startDateTextView.setText(startDate);
-                endDateTextView.setText(endDate);
-                numPartTextView.setText(String.valueOf(numPart));
-                typeTextView.setText(type);
+            case EVENT_ASSIS:
+                try {
+                    JSONArray jsonArray = new JSONArray(response);
+                    // Name LastName
+                    String name, lastName;
+                    // email
+                    String email;
+                    // Puntuacio
+                    String rate;
+                    // Comentari
+                    String comment;
+                    int id;
 
-                //Event event = new Event(name, image, location, description, startDate, endDate, numPart, type, id, owner_id);
-                //UserOpinion userOpinion = new UserOpinion();
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        id = jsonArray.getJSONObject(i).getInt("id");
+                        if (id == APIManager.getId()) {
+                            enrolledText.setVisibility(View.VISIBLE);
+                            enrollButton.setText(R.string.unenroll_string);
+                        } else {
+                            enrolledText.setVisibility(GONE);
+                            enrollButton.setText(R.string.enroll_string);
+                        }
 
-                showPossibleActions(startDate, endDate);
+                        name = jsonArray.getJSONObject(i).getString("name");
+                        lastName = jsonArray.getJSONObject(i).getString("last_name");
+                        email = jsonArray.getJSONObject(i).getString("email");
+                        rate = jsonArray.getJSONObject(i).getString("puntuation");
+                        comment = jsonArray.getJSONObject(i).getString("comentary");
+                        UserOpinion userOpinion = new UserOpinion(name, lastName, email, rate, comment);
+                        opinionsList.add(userOpinion);
+                    }
+
+                    updateUI();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(this, R.string.error_parsing_json, Toast.LENGTH_LONG).show();
+                }
+                break;
+
+            case EVENT_ENROLL:
+                modeResponse = EVENT_ASSIS;
+                APIManager.getEventAssistancesById(this, DetailEnrollEventActivity.this, id_event);
+                opinionsList = new ArrayList<>();
                 updateUI();
+                break;
 
-            } catch (Exception e) {
-                e.printStackTrace();
-                Toast.makeText(this, R.string.error_parsing_json, Toast.LENGTH_LONG).show();
-            }
+            case EVENT_DESNENROLL:
+                modeResponse = EVENT_ASSIS;
+                APIManager.getEventAssistancesById(this, DetailEnrollEventActivity.this, id_event);
+                opinionsList = new ArrayList<>();
+                updateUI();
+                break;
+
+            case EVENT_COMMENT:
+                break;
+
+            case EVENT_RATING:
+                break;
         }
+
     }
 
     @Override

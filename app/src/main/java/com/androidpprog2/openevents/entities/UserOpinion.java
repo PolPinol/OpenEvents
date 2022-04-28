@@ -1,28 +1,18 @@
 package com.androidpprog2.openevents.entities;
 
 public class UserOpinion {
-    private String image;
     private String name;
+    private String surname;
     private String email;
-    private float rating;
+    private String rating;
     private String comment;
-    private Event event;
 
-    public UserOpinion(String image, String name, String email, float rating, String comment, Event event) {
-        this.image = image;
+    public UserOpinion(String name, String surname, String email, String rating, String comment) {
         this.name = name;
+        this.surname = surname;
         this.email = email;
         this.rating = rating;
         this.comment = comment;
-        this.event = event;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 
     public String getName() {
@@ -41,11 +31,11 @@ public class UserOpinion {
         this.email = email;
     }
 
-    public float getRating() {
+    public String getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(String rating) {
         this.rating = rating;
     }
 
@@ -57,11 +47,11 @@ public class UserOpinion {
         this.comment = comment;
     }
 
-    public Event getEvent() {
-        return event;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setEvent(Event event) {
-        this.event = event;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 }

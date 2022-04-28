@@ -111,4 +111,5 @@
     <string name="default_email_string">user1@gmail.com</string>
     <string name="default_comment">Lorem ipsum dolor sit amet.</string>
     <string name="comment_example">lorem ipsum dolor sit amet consectetur adipiscing elit</string>
+    <string name="default_surname_string">surnameUser1</string>
 </resources>
