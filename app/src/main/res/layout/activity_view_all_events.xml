@@ -7,79 +7,149 @@
     tools:layout_editor_absoluteX="5dp"
     tools:layout_editor_absoluteY="65dp">
 
+    <TextView
+        android:id="@+id/all_events_text"
+        android:layout_width="345dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/allevents_text"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/all_events_text">
+
+        <Button
+            android:id="@+id/current_events_button"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:textStyle="bold"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="7dp"
+            android:backgroundTint="@color/green_light"
+            android:text="@string/current_events_text"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@+id/category_button" />
+
+
+        <Button
+            android:id="@+id/category_button"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_centerHorizontal="true"
+            android:textStyle="bold"
+            android:layout_marginEnd="7dp"
+            android:backgroundTint="@color/green_primary"
+            android:text="@string/category_string"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/filters_button"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_centerHorizontal="true"
+            android:textStyle="bold"
+            android:layout_marginEnd="7dp"
+            android:backgroundTint="@color/green_light"
+            android:text="@string/filters_string"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+
+        <Button
+            android:id="@+id/popularity_button"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_alignParentRight="true"
+            android:textStyle="bold"
+            android:layout_marginEnd="4dp"
+            android:backgroundTint="@color/green_primary"
+            android:text="@string/popularity_string"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="386dp"
-        android:layout_height="503dp"
+        android:layout_height="550dp"
         android:layout_marginTop="24dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/category_button">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
-        <EditText
-            android:id="@+id/type_input_events"
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="32dp"
-            android:background="@drawable/custom_edit_text_big_radius"
-            android:hint="@string/type_text_holder"
-            android:paddingStart="20dp"
-            android:paddingEnd="15dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/category_button" />
+            <EditText
+                android:id="@+id/type_input_events"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/custom_edit_text"
+                android:hint="@string/type_text_holder"
+                android:paddingStart="20dp"
+                android:paddingEnd="15dp"
+                tools:ignore="TouchTargetSizeCheck" />
 
-        <EditText
-            android:id="@+id/date_input"
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
-            android:background="@drawable/custom_edit_text_big_radius"
-            android:hint="@string/date_text_holder"
-            android:paddingStart="20dp"
-            android:paddingEnd="15dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/event_name_input" />
+            <EditText
+                android:id="@+id/date_input"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/custom_edit_text"
+                android:hint="@string/date_text_holder"
+                android:paddingStart="20dp"
+                android:paddingEnd="15dp" />
 
-        <EditText
-            android:id="@+id/event_name_input"
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
-            android:background="@drawable/custom_edit_text_big_radius"
-            android:hint="@string/event_name_text_holder"
-            android:paddingStart="20dp"
-            android:paddingEnd="15dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/location_input" />
+            <EditText
+                android:id="@+id/event_name_input"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/custom_edit_text"
+                android:hint="@string/event_name_text_holder"
+                android:paddingStart="20dp"
+                android:paddingEnd="15dp" />
 
-        <EditText
-            android:id="@+id/location_input"
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="32dp"
-            android:background="@drawable/custom_edit_text_big_radius"
-            android:hint="@string/location_text_holder"
-            android:paddingStart="20dp"
-            android:paddingEnd="15dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/type_input_events" />
+            <EditText
+                android:id="@+id/location_input"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/custom_edit_text"
+                android:hint="@string/location_text_holder"
+                android:paddingStart="20dp"
+                android:paddingEnd="15dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/all_events_recycler_view"
@@ -88,81 +158,13 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="20dp"
+            android:scrollbars="vertical"
             app:layoutManager="LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/date_input" />
 
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/category_button"
-        android:layout_width="85dp"
-        android:layout_height="35dp"
-        android:backgroundTint="@color/white"
-        android:text="@string/category_string"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="11sp"
-        app:layout_constraintEnd_toStartOf="@+id/filters_button"
-        app:layout_constraintTop_toBottomOf="@+id/all_events_text" />
-
-    <Button
-        android:id="@+id/filters_button"
-        android:layout_width="71dp"
-        android:layout_height="35dp"
-        android:backgroundTint="@color/white"
-        android:text="@string/filters_string"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="11sp"
-        app:layout_constraintEnd_toStartOf="@+id/popularity_button"
-        app:layout_constraintTop_toBottomOf="@+id/all_events_text" />
-
-    <TextView
-        android:id="@+id/all_events_text"
-        android:layout_width="345dp"
-        android:layout_height="84dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/allevents_text"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/current_events_button"
-        android:layout_width="119dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="1dp"
-        android:backgroundTint="@color/white"
-        android:text="@string/current_events_text"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="11sp"
-        app:layout_constraintEnd_toStartOf="@+id/category_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/all_events_text" />
-
-    <Button
-        android:id="@+id/popularity_button"
-        android:layout_width="109dp"
-        android:layout_height="35dp"
-        android:layout_marginEnd="15dp"
-        android:backgroundTint="@color/white"
-        android:text="@string/popularity_string"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="11sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/all_events_text" />
+        </LinearLayout>
 
 
 
