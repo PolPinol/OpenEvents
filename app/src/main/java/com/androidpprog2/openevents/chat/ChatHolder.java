@@ -36,12 +36,12 @@ public class ChatHolder extends RecyclerView.ViewHolder {
             if (message.isAlignLeft()) {
                 ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin = 20;
                 ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin = 100;
-                Drawable drawable = activity.getDrawable(R.drawable.big_radius_inverse_button);
+                Drawable drawable = activity.getDrawable(R.drawable.message1);
                 layout.setBackground(drawable);
             } else {
                 ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin = 100;
                 ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin = 20;
-                Drawable drawable = activity.getDrawable(R.drawable.big_radius_button);
+                Drawable drawable = activity.getDrawable(R.drawable.message2);
                 layout.setBackground(drawable);
             }
         }

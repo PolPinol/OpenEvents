@@ -93,10 +93,10 @@
     <string name="chat_string">Chat</string>
     <string name="friends_text">Friends</string>
     <string name="message_text">Message</string>
-    <string name="current_events_text">Current Events</string>
+    <string name="current_events_text">Current</string>
     <string name="category_string">Category</string>
     <string name="filters_string">Filters</string>
-    <string name="popularity_string">Popularity</string>
+    <string name="popularity_string">Popular</string>
     <string name="event_name_text_holder">Event Name</string>
     <string name="date_text_holder">Date</string>
     <string name="delete_string">Delete</string>

@@ -71,6 +71,8 @@
         <entry key="..\:/Users/polpi/Desktop/OpenEvents/app/src/main/res/layout/list_friend.xml" value="0.23007246376811594" />
         <entry key="..\:/Users/polpi/Desktop/OpenEvents/app/src/main/res/layout/list_friend_requests.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/polpi/Desktop/OpenEvents/app/src/main/res/layout/list_messages.xml" value="0.23007246376811594" />
+        <entry key="app/src/main/res/drawable/message1.xml" value="0.172" />
+        <entry key="app/src/main/res/drawable/message2.xml" value="0.172" />
       </map>
     </option>
   </component>
