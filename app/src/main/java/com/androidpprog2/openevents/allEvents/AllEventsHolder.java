@@ -5,12 +5,12 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.androidpprog2.openevents.DetailEnrollEventActivity;
 import com.androidpprog2.openevents.DetailEventActivity;
 import com.androidpprog2.openevents.R;
 import com.androidpprog2.openevents.entities.Event;
@@ -28,7 +28,7 @@ public class AllEventsHolder extends RecyclerView.ViewHolder implements View.OnC
     private Event event;
 
     public AllEventsHolder(LayoutInflater inflater, ViewGroup parent, Activity activity) {
-        super(inflater.inflate(R.layout.list_my_events, parent, false));
+        super(inflater.inflate(R.layout.list_events, parent, false));
 
         eventImage = (ImageView) itemView.findViewById(R.id.image_event);
         nameEvent = (TextView) itemView.findViewById(R.id.name_event);
@@ -52,7 +52,7 @@ public class AllEventsHolder extends RecyclerView.ViewHolder implements View.OnC
 
     @Override
     public void onClick(View view) {
-        Intent intent = new Intent(activity, DetailEventActivity.class);
+        Intent intent = new Intent(activity, DetailEnrollEventActivity.class);
         intent.putExtra("ARGUMENT_EVENT_ID", event.getId());
 
         activity.startActivity(intent);

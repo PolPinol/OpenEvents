@@ -99,4 +99,18 @@
     <string name="popularity_string">Popular</string>
     <string name="event_name_text_holder">Event Name</string>
     <string name="date_text_holder">Date</string>
+    <string name="delete_string">Delete</string>
+    <string name="enroll_string">Enroll</string>
+    <string name="enrolled_string">Enrolled</string>
+    <string name="unenroll_string">Unenroll</string>
+    <string name="rate_the_event_text">Rate the event:</string>
+    <string name="comments_string">Comments</string>
+    <string name="comments_opinion_text">Comments/Opinion</string>
+    <string name="error_parsing_date">Error. Start Date or End Date is null.</string>
+    <string name="post_text">Post</string>
+    <string name="default_email_string">user1@gmail.com</string>
+    <string name="default_comment">Lorem ipsum dolor sit amet.</string>
+    <string name="comment_example">lorem ipsum dolor sit amet consectetur adipiscing elit</string>
+    <string name="default_surname_string">surnameUser1</string>
+    <string name="error_comment_empty">Error! The comment mustn\'t be empty</string>
 </resources>

@@ -97,12 +97,18 @@ public class EditEventActivity extends AppCompatActivity implements ResponseList
                     map.put("type", type);
                 }
 
+                map.entrySet().forEach(entry -> {
+                    Log.e("map", entry.getKey() + " " + entry.getValue());
+                });
+                int id_event = getIntent().getExtras().getInt("ARGUMENT_EVENT_ID");
+                Log.e("eventid", String.valueOf(id_event));
+
                 try {
                     if (!numPart.isEmpty()) {
                         Integer.parseInt(numPart);
                     }
 
-                    APIManager.putEventById(view.getContext(), EditEventActivity.this, getIntent().getExtras().getInt("ARGUMENT_EVENT_ID"), map);
+                    APIManager.putEventById(view.getContext(), EditEventActivity.this, id_event, map);
                 } catch (Exception e){
                     Toast.makeText(view.getContext(), R.string.toast_integer_error, Toast.LENGTH_LONG).show();
                 }
@@ -112,6 +118,7 @@ public class EditEventActivity extends AppCompatActivity implements ResponseList
 
     @Override
     public void onResponse(String response) {
+        Log.e("resp", response);
         Intent intent = new Intent(EditEventActivity.this, ViewMyEventsActivity.class);
         startActivity(intent);
         finish();

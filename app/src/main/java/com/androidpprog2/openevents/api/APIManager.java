@@ -298,10 +298,7 @@ public class APIManager {
     // GET METHOD
     // Gets all assistances for event with matching id
     public static void getEventAssistancesById(Context context, ResponseListener listener, int id) {
-        Map<String, String> map = new HashMap<>();
-        map.put("id", Integer.toString(id));
-
-        makeRequest(context, ENDPOINT_EVENTS_ASSIS.replace(ID, Integer.toString(id)), Request.Method.GET, listener, map);
+        makeRequest(context, ENDPOINT_EVENTS_ASSIS.replace(ID, Integer.toString(id)), Request.Method.GET, listener, null);
     }
 
     // GET METHOD
@@ -352,32 +349,20 @@ public class APIManager {
 
     // POST METHOD
     // Creates assistance of user with matching id for event with matching id
-    public static void createAssistance(Context context, ResponseListener listener, int user_id, int event_id) {
-        Map<String, String> map = new HashMap<>();
-        map.put("user_id", Integer.toString(user_id));
-        map.put("event_id", Integer.toString(event_id));
-
-        makeRequest(context, ENDPOINT_ASSISTANCES.replace(USER_ID, String.valueOf(user_id)).replace(EVENT_ID,  String.valueOf(event_id)), Request.Method.POST, listener, map);
+    public static void createAssistance(Context context, ResponseListener listener, int event_id) {
+        makeRequest(context, ENDPOINT_EVENTS_ASSIS.replace(ID, String.valueOf(event_id)), Request.Method.POST, listener, null);
     }
 
     // PUT METHOD
     // Edits assistance of user with matching id for the event with matching id
-    public static void editAssistance(Context context, ResponseListener listener, int user_id, int event_id) {
-        Map<String, String> map = new HashMap<>();
-        map.put("user_id", Integer.toString(user_id));
-        map.put("event_id", Integer.toString(event_id));
-
+    public static void putCommentOrRate(Context context, ResponseListener listener, int user_id, int event_id, Map<String, String> map) {
         makeRequest(context, ENDPOINT_ASSISTANCES.replace(USER_ID, String.valueOf(user_id)).replace(EVENT_ID,  String.valueOf(event_id)), Request.Method.PUT, listener, map);
     }
 
     // DELETE METHOD
     // Deletes assistance of user with matching id for the event with matching id
-    public static void deleteAssistance(Context context, ResponseListener listener, int user_id, int event_id) {
-        Map<String, String> map = new HashMap<>();
-        map.put("user_id", Integer.toString(user_id));
-        map.put("event_id", Integer.toString(event_id));
-
-        makeRequest(context, ENDPOINT_ASSISTANCES.replace(USER_ID, String.valueOf(user_id)).replace(EVENT_ID,  String.valueOf(event_id)), Request.Method.DELETE, listener, map);
+    public static void deleteAssistance(Context context, ResponseListener listener, int event_id) {
+        makeRequest(context, ENDPOINT_EVENTS_ASSIS.replace(ID, String.valueOf(event_id)), Request.Method.DELETE, listener, null);
     }
 
     // POST METHOD

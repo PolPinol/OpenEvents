@@ -26,7 +26,7 @@ public class MyEventHolder extends RecyclerView.ViewHolder implements View.OnCli
 
 
     public MyEventHolder(LayoutInflater inflater, ViewGroup parent, Activity activity) {
-        super(inflater.inflate(R.layout.list_my_events, parent, false));
+        super(inflater.inflate(R.layout.list_events, parent, false));
 
         nameEventText = (TextView) itemView.findViewById(R.id.name_event);
         descriptionEventText = (TextView) itemView.findViewById(R.id.description_event);
