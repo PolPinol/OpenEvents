@@ -12,16 +12,16 @@
 
     <ScrollView
         android:id="@+id/scroll_view"
-        android:layout_width="410dp"
-        android:layout_height="140dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="650dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_event_show">
+        app:layout_constraintTop_toBottomOf="@+id/profile_text"
+        android:scrollbars="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
@@ -183,6 +183,7 @@
                 android:layout_width="154dp"
                 android:layout_height="29dp"
                 android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="3dp"
                 android:text="@string/name_text_holder"
                 android:textAlignment="textStart"
@@ -192,12 +193,13 @@
                 app:layout_constraintEnd_toStartOf="@+id/name_event_show"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/image_event_show" />
 
             <TextView
                 android:id="@+id/name_event_show"
                 android:layout_width="190dp"
                 android:layout_height="29dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
                 android:text="@string/default_profile_data"
                 android:textAlignment="textStart"
@@ -205,7 +207,7 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/image_event_show" />
 
             <TextView
                 android:id="@+id/location_text_show"
@@ -237,30 +239,128 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/name_event_text" />
 
+            <TextView
+                android:id="@+id/rate_event_text"
+                android:layout_width="223dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="62dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/rate_the_event_text"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/comments_input_text" />
+
+            <ImageView
+                android:id="@+id/image_event_show"
+                android:layout_width="194dp"
+                android:layout_height="110dp"
+                android:layout_marginStart="96dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="96dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/enrolled_event_text" />
+
+            <TextView
+                android:id="@+id/enrolled_event_text"
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="130dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="130dp"
+                android:background="@drawable/big_radius_button"
+                android:gravity="center"
+                android:text="@string/enrolled_string"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/post_comment_button"
+                android:layout_width="87dp"
+                android:layout_height="43dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/small_radius_button"
+                android:text="@string/post_text"
+                android:textAllCaps="false"
+                android:textSize="17sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.098"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/comments_input_text" />
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                android:layout_width="245dp"
+                android:layout_height="43dp"
+                android:layout_marginTop="4dp"
+                android:numStars="5"
+                android:scaleX=".7"
+                android:scaleY=".7"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.879"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rate_event_text" />
+
+            <EditText
+                android:id="@+id/comments_input_text"
+                android:layout_width="0dp"
+                android:layout_height="91dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/custom_multiple_edit_text"
+                android:gravity="top"
+                android:hint="@string/comments_opinion_text"
+                android:inputType="textMultiLine"
+                android:padding="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/user_opinions_recycler_view" />
+
+            <Button
+                android:id="@+id/enroll_event_button"
+                android:layout_width="120dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/big_radius_button"
+                android:text="@string/enroll_string"
+                android:textAllCaps="false"
+                android:textSize="17sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.505"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/user_opinions_recycler_view"
+                android:layout_width="347dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="28dp"
+                app:layoutManager="LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/label_type_event" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
     <TextView
-        android:id="@+id/rate_event_text"
-        android:layout_width="223dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="62dp"
-        android:layout_marginTop="48dp"
-        android:text="@string/rate_the_event_text"
-        android:textAlignment="textStart"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/comments_input_text" />
-
-    <TextView
         android:id="@+id/profile_text"
-        android:layout_width="411dp"
+        android:layout_width="0dp"
         android:layout_height="52dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="4dp"
         android:text="@string/event_string"
         android:textAlignment="center"
         android:textColor="@color/black"
@@ -269,94 +369,5 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
-    <ImageView
-        android:id="@+id/image_event_show"
-        android:layout_width="194dp"
-        android:layout_height="110dp"
-        android:layout_marginStart="96dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="96dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.482"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enrolled_event_text" />
-
-    <TextView
-        android:id="@+id/enrolled_event_text"
-        android:layout_width="0dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="130dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="130dp"
-        android:background="@drawable/big_radius_button"
-        android:gravity="center"
-        android:text="@string/enrolled_string"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_text" />
-
-    <Button
-        android:id="@+id/post_button"
-        android:layout_width="87dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/small_radius_button"
-        android:text="@string/post_string"
-        android:textAllCaps="false"
-        android:textSize="17sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.098"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/comments_input_text" />
-
-    <Button
-        android:id="@+id/enroll_event_button"
-        android:layout_width="120dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/big_radius_button"
-        android:text="@string/enroll_string"
-        android:textAllCaps="false"
-        android:textSize="17sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
-
-    <RatingBar
-        android:id="@+id/ratingBar"
-        android:layout_width="245dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="4dp"
-        android:numStars="5"
-        android:scaleX=".7"
-        android:scaleY=".7"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.879"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rate_event_text" />
-
-    <EditText
-        android:id="@+id/comments_input_text"
-        android:layout_width="0dp"
-        android:layout_height="91dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="32dp"
-        android:background="@drawable/custom_multiple_edit_text"
-        android:gravity="top"
-        android:hint="@string/comments_opinion_text"
-        android:inputType="textMultiLine"
-        android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scroll_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -330,20 +330,12 @@ public class APIManager {
     // POST METHOD
     // Creates assistance of user with matching id for event with matching id
     public static void createAssistance(Context context, ResponseListener listener, int user_id, int event_id) {
-        Map<String, String> map = new HashMap<>();
-        map.put("user_id", Integer.toString(user_id));
-        map.put("event_id", Integer.toString(event_id));
-
-        makeRequest(context, ENDPOINT_ASSISTANCES.replace(USER_ID, String.valueOf(user_id)).replace(EVENT_ID,  String.valueOf(event_id)), Request.Method.POST, listener, map);
+        makeRequest(context, ENDPOINT_ASSISTANCES.replace(USER_ID, String.valueOf(user_id)).replace(EVENT_ID,  String.valueOf(event_id)), Request.Method.POST, listener, null);
     }
 
     // PUT METHOD
     // Edits assistance of user with matching id for the event with matching id
-    public static void editAssistance(Context context, ResponseListener listener, int user_id, int event_id) {
-        Map<String, String> map = new HashMap<>();
-        map.put("user_id", Integer.toString(user_id));
-        map.put("event_id", Integer.toString(event_id));
-
+    public static void putCommentOrRate(Context context, ResponseListener listener, int user_id, int event_id, Map<String, String> map) {
         makeRequest(context, ENDPOINT_ASSISTANCES.replace(USER_ID, String.valueOf(user_id)).replace(EVENT_ID,  String.valueOf(event_id)), Request.Method.PUT, listener, map);
     }
 

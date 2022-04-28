@@ -106,5 +106,9 @@
     <string name="rate_the_event_text">Rate the event:</string>
     <string name="comments_string">Comments</string>
     <string name="comments_opinion_text">Comments/Opinion</string>
-    <string name="post_string">Post</string>
+    <string name="error_parsing_date">Error. Start Date or End Date is null.</string>
+    <string name="post_text">Post</string>
+    <string name="default_email_string">user1@gmail.com</string>
+    <string name="default_comment">Lorem ipsum dolor sit amet.</string>
+    <string name="comment_example">lorem ipsum dolor sit amet consectetur adipiscing elit</string>
 </resources>

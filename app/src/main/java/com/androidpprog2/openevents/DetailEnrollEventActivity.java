@@ -4,6 +4,7 @@ import static android.view.View.GONE;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,13 +14,30 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.VolleyError;
+import com.androidpprog2.openevents.allEvents.AllEventsAdapter;
 import com.androidpprog2.openevents.api.APIManager;
 import com.androidpprog2.openevents.api.ResponseListener;
+import com.androidpprog2.openevents.entities.Event;
+import com.androidpprog2.openevents.entities.UserOpinion;
+import com.androidpprog2.openevents.detailOpinions.OpinionsAdapter;
+import com.androidpprog2.openevents.detailOpinions.OpinionsHolder;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class DetailEnrollEventActivity extends AppCompatActivity implements ResponseListener {
     private final static String NO_IMAGE_URL = "https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg";
@@ -50,13 +68,26 @@ public class DetailEnrollEventActivity extends AppCompatActivity implements Resp
     private TextView enrolledText;
     private TextView ratingText;
     private Button enrollButton;
+    private Button postCommentButton;
     private RatingBar ratingBar;
     private EditText commentsText;
+
+    // Connecting recycler view attributes
+    private RecyclerView recyclerView;
+    private OpinionsAdapter adapter;
+    private List<UserOpinion> opinionsList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_enroll_event);
         getSupportActionBar().hide();
+
+        // Connecting Recycler View elements
+        opinionsList = new ArrayList<>();
+        recyclerView = (RecyclerView) this.findViewById(R.id.user_opinions_recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new OpinionsAdapter(null, this);
+        recyclerView.setAdapter(adapter);
 
         imageTextView = findViewById(R.id.image_event_show);
         nameTextView = findViewById(R.id.name_event_show);
@@ -66,40 +97,26 @@ public class DetailEnrollEventActivity extends AppCompatActivity implements Resp
         endDateTextView = findViewById(R.id.endDate_show);
         numPartTextView = findViewById(R.id.numpart_show);
         typeTextView = findViewById(R.id.type_event_text);
-        commentsText = findViewById(R.id.comments_input_text);
-        enrolledText = findViewById(R.id.enrolled_event_text);
-        ratingText = findViewById(R.id.rate_event_text);
-        modeResponse = EVENT_INFO;
         this.id_event = getIntent().getExtras().getInt("ARGUMENT_EVENT_ID");
         APIManager.getEventById(this, this, id_event);
 
 
-        //Log.e("ENDDATE", endDate); --> null
-        //Log.e( "ID_USER", String.valueOf(id_user));  --> 0
+        Log.e( "ID_USER", String.valueOf(APIManager.getId()));
 
         enrollButton = findViewById(R.id.enroll_event_button);
         ratingBar = findViewById(R.id.ratingBar);
         commentsText = findViewById(R.id.comments_input_text);
-
+        enrolledText = findViewById(R.id.enrolled_event_text);
+        commentsText = findViewById(R.id.comments_input_text);
+        ratingText = findViewById(R.id.rate_event_text);
+        postCommentButton = findViewById(R.id.post_comment_button);
         commentsText.setVisibility(GONE);
         ratingBar.setVisibility(GONE);
         ratingText.setVisibility(GONE);
         enrolledText.setVisibility(GONE); //TODO: only gone the first time
-        //enrollButton.setVisibility(GONE);
-
-        //If the event has already finished and the user was enrolled into it,
-        // we must show comments input text and rating bar
-        //if () {
-        //commentsText.setVisibility(View.VISIBLE);
-        //ratingBar.setVisibility(View.VISIBLE);
-        //ratingText.setVisibility(View.VISIBLE);
-        //}
-
-        // If the event has not already started, the user can enroll and
-        // unenroll the event
-        //if () {
-        //enrollButton.setVisibility(View.VISIBLE);
-        //}
+        enrollButton.setVisibility(GONE);
+        postCommentButton.setVisibility(GONE);
+        APIManager.getEventById(this, DetailEnrollEventActivity.this, id_event);
 
         enrollButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,18 +138,24 @@ public class DetailEnrollEventActivity extends AppCompatActivity implements Resp
         ratingBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //ratingBar.getRating();
+                // Cridar a l'API per posar puntuació a l'event
+                Map<String, String> map = new HashMap<>();
+                map.put("user_id", Integer.toString(APIManager.getId()));
+                map.put("event_id", Integer.toString(id_event));
+                APIManager.putCommentOrRate(view.getContext(), DetailEnrollEventActivity.this, APIManager.getId(), id_event, map);
             }
         });
 
-        commentsText.setOnClickListener(new View.OnClickListener() {
+        postCommentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //commentsText.getText();
+                Map<String, String> map = new HashMap<>();
+                map.put("user_id", Integer.toString(APIManager.getId()));
+                map.put("event_id", Integer.toString(id_event));
+                APIManager.putCommentOrRate(view.getContext(), DetailEnrollEventActivity.this, APIManager.getId(), id_event, map);
             }
         });
     }
-
 
     @Override
     public void onResponse(String response) {
@@ -164,20 +187,66 @@ public class DetailEnrollEventActivity extends AppCompatActivity implements Resp
                 numPartTextView.setText(String.valueOf(numPart));
                 typeTextView.setText(type);
 
-                modeResponse = EVENT_REMOVE;
+                //Event event = new Event(name, image, location, description, startDate, endDate, numPart, type, id, owner_id);
+                //UserOpinion userOpinion = new UserOpinion();
+
+                showPossibleActions(startDate, endDate);
+                updateUI();
+
             } catch (Exception e) {
+                e.printStackTrace();
                 Toast.makeText(this, R.string.error_parsing_json, Toast.LENGTH_LONG).show();
             }
-        } else if (modeResponse == EVENT_REMOVE) {
-            Toast.makeText(this, R.string.event_removed, Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(DetailEnrollEventActivity.this, ViewMyEventsActivity.class);
-            startActivity(intent);
-            finish();
         }
     }
 
     @Override
     public void onError(VolleyError error) {
         Toast.makeText(this, R.string.toast_api_error, Toast.LENGTH_LONG).show();
+    }
+
+    private void showPossibleActions(String startDate, String endDate) {
+        //If the event has already finished and the user was enrolled into it,
+        // we must show comments input text and rating bar
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date dateEnd = dateFormat.parse(endDate.substring(0, 10));
+            Date actualDate = null;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                actualDate = dateFormat.parse(LocalDateTime.now().toString().substring(0, 10));
+            }
+
+            if (dateEnd != null) {
+                if(dateEnd.before(actualDate)) {
+                    commentsText.setVisibility(View.VISIBLE);
+                    ratingBar.setVisibility(View.VISIBLE);
+                    ratingText.setVisibility(View.VISIBLE);
+                    postCommentButton.setVisibility(View.VISIBLE);
+                } else {
+                    // If the event has not already started, the user can enroll and
+                    // unenroll the event
+                    Date dateStart = dateFormat.parse(startDate.substring(0, 10));
+                    if (dateStart != null) {
+                        if (dateStart.after(actualDate)) {
+                            enrollButton.setVisibility(View.VISIBLE);
+                        }
+                    }
+                }
+            }
+
+        } catch (Exception ex) {
+            Toast.makeText(this, R.string.error_parsing_date, Toast.LENGTH_LONG).show();
+        }
+    }
+    private void updateUI() {
+        if (adapter == null) {
+            adapter = new OpinionsAdapter(opinionsList, this);
+            recyclerView.setAdapter(adapter);
+        } else {
+            adapter = new OpinionsAdapter(opinionsList, this);
+            recyclerView.setAdapter(adapter);
+
+            adapter.notifyDataSetChanged();
+        }
     }
 }
