@@ -50,7 +50,7 @@ public class OpinionsHolder extends RecyclerView.ViewHolder {
 
         if (userOpinion.getRating() != null && !userOpinion.getRating().isEmpty()) {
             try {
-                ratingBarUser.setRating(Integer.parseInt(userOpinion.getRating()));
+                ratingBarUser.setRating(Float.parseFloat(userOpinion.getRating()) / 2);
             } catch (Exception e) {
                 ratingBarUser.setVisibility(View.GONE);
             }

@@ -2,6 +2,7 @@ package com.androidpprog2.openevents;
 
 import static android.view.View.GONE;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -80,6 +81,9 @@ public class DetailEnrollEventActivity extends AppCompatActivity implements Resp
     private RecyclerView recyclerView;
     private OpinionsAdapter adapter;
     private List<UserOpinion> opinionsList;
+    private boolean wasEnrolled;
+    private Activity activity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,6 +97,7 @@ public class DetailEnrollEventActivity extends AppCompatActivity implements Resp
         adapter = new OpinionsAdapter(null, this);
         recyclerView.setAdapter(adapter);
 
+        this.activity = this;
         imageTextView = findViewById(R.id.image_event_show);
         nameTextView = findViewById(R.id.name_event_show);
         locationTextView = findViewById(R.id.location_text_show);
@@ -134,14 +139,13 @@ public class DetailEnrollEventActivity extends AppCompatActivity implements Resp
             }
         });
 
-        ratingBar.setOnClickListener(new View.OnClickListener() {
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
-            public void onClick(View view) {
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                 // Cridar a l'API per posar puntuació a l'event
                 Map<String, String> map = new HashMap<>();
-                map.put("user_id", Integer.toString(APIManager.getId()));
-                map.put("event_id", Integer.toString(id_event));
-                //APIManager.putCommentOrRate(view.getContext(), DetailEnrollEventActivity.this, APIManager.getId(), id_event, map);
+                map.put("puntuation", Integer.toString((int) (ratingBar.getRating() * 2)));
+                APIManager.putCommentOrRate(activity, DetailEnrollEventActivity.this, APIManager.getId(), id_event, map);
             }
         });
 
@@ -149,9 +153,13 @@ public class DetailEnrollEventActivity extends AppCompatActivity implements Resp
             @Override
             public void onClick(View view) {
                 Map<String, String> map = new HashMap<>();
-                map.put("user_id", Integer.toString(APIManager.getId()));
-                map.put("event_id", Integer.toString(id_event));
-                //APIManager.putCommentOrRate(view.getContext(), DetailEnrollEventActivity.this, APIManager.getId(), id_event, map);
+                if (!commentsText.getText().toString().isEmpty()) {
+                    map.put("comentary", commentsText.getText().toString());
+                    APIManager.putCommentOrRate(view.getContext(), DetailEnrollEventActivity.this, APIManager.getId(), id_event, map);
+                } else {
+                    Toast.makeText(view.getContext(), R.string.error_comment_empty, Toast.LENGTH_LONG).show();
+                }
+
             }
         });
     }
@@ -194,8 +202,6 @@ public class DetailEnrollEventActivity extends AppCompatActivity implements Resp
                     numPartTextView.setText(String.valueOf(numPart));
                     typeTextView.setText(type);
 
-                    showPossibleActions(startDate, endDate);
-
                     modeResponse = EVENT_ASSIS;
                     APIManager.getEventAssistancesById(this, DetailEnrollEventActivity.this, id_event);
                 } catch (Exception e) {
@@ -220,9 +226,11 @@ public class DetailEnrollEventActivity extends AppCompatActivity implements Resp
                     for (int i = 0; i < jsonArray.length(); i++) {
                         id = jsonArray.getJSONObject(i).getInt("id");
                         if (id == APIManager.getId()) {
+                            wasEnrolled = true;
                             enrolledText.setVisibility(View.VISIBLE);
                             enrollButton.setText(R.string.unenroll_string);
                         } else {
+                            wasEnrolled = false;
                             enrolledText.setVisibility(GONE);
                             enrollButton.setText(R.string.enroll_string);
                         }
@@ -236,6 +244,7 @@ public class DetailEnrollEventActivity extends AppCompatActivity implements Resp
                         opinionsList.add(userOpinion);
                     }
 
+                    showPossibleActions(startDate, endDate);
                     updateUI();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -244,23 +253,13 @@ public class DetailEnrollEventActivity extends AppCompatActivity implements Resp
                 break;
 
             case EVENT_ENROLL:
-                modeResponse = EVENT_ASSIS;
-                APIManager.getEventAssistancesById(this, DetailEnrollEventActivity.this, id_event);
-                opinionsList = new ArrayList<>();
-                updateUI();
-                break;
-
             case EVENT_DESNENROLL:
+            case EVENT_COMMENT:
+            case EVENT_RATING:
                 modeResponse = EVENT_ASSIS;
                 APIManager.getEventAssistancesById(this, DetailEnrollEventActivity.this, id_event);
                 opinionsList = new ArrayList<>();
                 updateUI();
-                break;
-
-            case EVENT_COMMENT:
-                break;
-
-            case EVENT_RATING:
                 break;
         }
 
@@ -272,8 +271,6 @@ public class DetailEnrollEventActivity extends AppCompatActivity implements Resp
     }
 
     private void showPossibleActions(String startDate, String endDate) {
-        //If the event has already finished and the user was enrolled into it,
-        // we must show comments input text and rating bar
         try {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date dateEnd = dateFormat.parse(endDate.substring(0, 10));
@@ -283,7 +280,9 @@ public class DetailEnrollEventActivity extends AppCompatActivity implements Resp
             }
 
             if (dateEnd != null) {
-                if(dateEnd.before(actualDate)) {
+                //If the event has already finished and the user was enrolled into it,
+                // we must show comments input text and rating bar
+                if(dateEnd.before(actualDate) && wasEnrolled) {
                     commentsText.setVisibility(View.VISIBLE);
                     ratingBar.setVisibility(View.VISIBLE);
                     ratingText.setVisibility(View.VISIBLE);

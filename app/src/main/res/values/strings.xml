@@ -112,4 +112,5 @@
     <string name="default_comment">Lorem ipsum dolor sit amet.</string>
     <string name="comment_example">lorem ipsum dolor sit amet consectetur adipiscing elit</string>
     <string name="default_surname_string">surnameUser1</string>
+    <string name="error_comment_empty">Error! The comment mustn\'t be empty</string>
 </resources>
