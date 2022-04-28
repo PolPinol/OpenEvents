@@ -1,9 +1,12 @@
 package com.androidpprog2.openevents;
 
+import static android.view.View.GONE;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -45,9 +48,10 @@ public class DetailEnrollEventActivity extends AppCompatActivity implements Resp
     private String type;
 
     private TextView enrolledText;
+    private TextView ratingText;
     private Button enrollButton;
-    private Button commentsButton;
     private RatingBar ratingBar;
+    private EditText commentsText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,45 +66,69 @@ public class DetailEnrollEventActivity extends AppCompatActivity implements Resp
         endDateTextView = findViewById(R.id.endDate_show);
         numPartTextView = findViewById(R.id.numpart_show);
         typeTextView = findViewById(R.id.type_event_text);
-
+        commentsText = findViewById(R.id.comments_input_text);
         enrolledText = findViewById(R.id.enrolled_event_text);
-        enrolledText.setVisibility(View.GONE);
+        ratingText = findViewById(R.id.rate_event_text);
         modeResponse = EVENT_INFO;
         this.id_event = getIntent().getExtras().getInt("ARGUMENT_EVENT_ID");
         APIManager.getEventById(this, this, id_event);
 
+
+        //Log.e("ENDDATE", endDate); --> null
+        //Log.e( "ID_USER", String.valueOf(id_user));  --> 0
+
         enrollButton = findViewById(R.id.enroll_event_button);
+        ratingBar = findViewById(R.id.ratingBar);
+        commentsText = findViewById(R.id.comments_input_text);
+
+        commentsText.setVisibility(GONE);
+        ratingBar.setVisibility(GONE);
+        ratingText.setVisibility(GONE);
+        enrolledText.setVisibility(GONE); //TODO: only gone the first time
+        //enrollButton.setVisibility(GONE);
+
+        //If the event has already finished and the user was enrolled into it,
+        // we must show comments input text and rating bar
+        //if () {
+        //commentsText.setVisibility(View.VISIBLE);
+        //ratingBar.setVisibility(View.VISIBLE);
+        //ratingText.setVisibility(View.VISIBLE);
+        //}
+
+        // If the event has not already started, the user can enroll and
+        // unenroll the event
+        //if () {
+        //enrollButton.setVisibility(View.VISIBLE);
+        //}
+
         enrollButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (enrollButton.getText().equals(getString(R.string.enroll_string))) {
                     enrollButton.setText(getString(R.string.unenroll_string));
                     enrolledText.setVisibility(View.VISIBLE);
-                    // Modify API
+                    APIManager.createAssistance(view.getContext(), DetailEnrollEventActivity.this, APIManager.getId(), id_event);
 
                 } else {
                     enrollButton.setText(getString(R.string.enroll_string));
-                    enrolledText.setVisibility(View.GONE);
-
-                    // Modify API
+                    enrolledText.setVisibility(GONE);
+                    APIManager.deleteAssistance(view.getContext(), DetailEnrollEventActivity.this, APIManager.getId(), id_event);
 
                 }
             }
         });
 
-        commentsButton = findViewById(R.id.comments_event_button);
-        commentsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // See comments on API
-            }
-        });
-
-        ratingBar = findViewById(R.id.ratingBar);
         ratingBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Cridar a l'API per posar puntuació a l'event
+                //ratingBar.getRating();
+            }
+        });
+
+        commentsText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //commentsText.getText();
             }
         });
     }

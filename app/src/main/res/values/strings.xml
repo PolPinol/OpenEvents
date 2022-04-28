@@ -105,4 +105,6 @@
     <string name="unenroll_string">Unenroll</string>
     <string name="rate_the_event_text">Rate the event:</string>
     <string name="comments_string">Comments</string>
+    <string name="comments_opinion_text">Comments/Opinion</string>
+    <string name="post_string">Post</string>
 </resources>

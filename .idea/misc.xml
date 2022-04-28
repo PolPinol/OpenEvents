@@ -5,9 +5,11 @@
       <map>
         <entry key="..\:/Users/angel/OneDrive/Escritorio/2n ENG/Git_OpenEvents/app/src/main/res/drawable/custom_edit_text.xml" value="0.2825" />
         <entry key="..\:/Users/angel/OneDrive/Escritorio/2n ENG/Git_OpenEvents/app/src/main/res/drawable/custom_edit_text_big_radius.xml" value="0.2825" />
+        <entry key="..\:/Users/angel/OneDrive/Escritorio/2n ENG/Git_OpenEvents/app/src/main/res/drawable/custom_multiple_edit_text.xml" value="0.286" />
+        <entry key="..\:/Users/angel/OneDrive/Escritorio/2n ENG/Git_OpenEvents/app/src/main/res/drawable/custom_multiple_input_text.xml" value="0.286" />
         <entry key="..\:/Users/angel/OneDrive/Escritorio/2n ENG/Git_OpenEvents/app/src/main/res/layout/activity_chat.xml" value="0.1308876811594203" />
         <entry key="..\:/Users/angel/OneDrive/Escritorio/2n ENG/Git_OpenEvents/app/src/main/res/layout/activity_create_event.xml" value="0.3482789855072464" />
-        <entry key="..\:/Users/angel/OneDrive/Escritorio/2n ENG/Git_OpenEvents/app/src/main/res/layout/activity_detail_enroll_event.xml" value="0.45861297539149887" />
+        <entry key="..\:/Users/angel/OneDrive/Escritorio/2n ENG/Git_OpenEvents/app/src/main/res/layout/activity_detail_enroll_event.xml" value="0.3066914498141264" />
         <entry key="..\:/Users/angel/OneDrive/Escritorio/2n ENG/Git_OpenEvents/app/src/main/res/layout/activity_detail_event.xml" value="0.3482789855072464" />
         <entry key="..\:/Users/angel/OneDrive/Escritorio/2n ENG/Git_OpenEvents/app/src/main/res/layout/activity_edit_event.xml" value="0.3482789855072464" />
         <entry key="..\:/Users/angel/OneDrive/Escritorio/2n ENG/Git_OpenEvents/app/src/main/res/layout/activity_edit_profile.xml" value="0.3482789855072464" />
@@ -26,9 +28,13 @@
         <entry key="..\:/Users/angel/OneDrive/Escritorio/2n ENG/Git_OpenEvents/app/src/main/res/layout/activity_view_my_events.xml" value="0.3482789855072464" />
         <entry key="..\:/Users/angel/OneDrive/Escritorio/2n ENG/Git_OpenEvents/app/src/main/res/layout/all_events.xml" value="0.3482789855072464" />
         <entry key="..\:/Users/angel/OneDrive/Escritorio/2n ENG/Git_OpenEvents/app/src/main/res/layout/list_all_events.xml" value="0.41509433962264153" />
+        <entry key="..\:/Users/angel/OneDrive/Escritorio/2n ENG/Git_OpenEvents/app/src/main/res/layout/list_comment_rating.xml" value="0.34232365145228216" />
         <entry key="..\:/Users/angel/OneDrive/Escritorio/2n ENG/Git_OpenEvents/app/src/main/res/layout/list_events.xml" value="0.3482789855072464" />
+        <entry key="..\:/Users/angel/OneDrive/Escritorio/2n ENG/Git_OpenEvents/app/src/main/res/layout/list_friend.xml" value="0.1259259259259259" />
         <entry key="..\:/Users/angel/OneDrive/Escritorio/2n ENG/Git_OpenEvents/app/src/main/res/layout/list_friend_requests.xml" value="0.2078804347826087" />
+        <entry key="..\:/Users/angel/OneDrive/Escritorio/2n ENG/Git_OpenEvents/app/src/main/res/layout/list_messages.xml" value="0.2504528985507246" />
         <entry key="..\:/Users/angel/OneDrive/Escritorio/2n ENG/Git_OpenEvents/app/src/main/res/layout/list_my_events.xml" value="0.23880597014925373" />
+        <entry key="..\:/Users/angel/OneDrive/Escritorio/2n ENG/Git_OpenEvents/app/src/main/res/layout/list_opinions.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/polpi/Desktop/OpenEvents/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.177" />
         <entry key="..\:/Users/polpi/Desktop/OpenEvents/app/src/main/res/drawable/big_radius_button.xml" value="0.177" />
         <entry key="..\:/Users/polpi/Desktop/OpenEvents/app/src/main/res/drawable/big_radius_inverse_button.xml" value="0.177" />
