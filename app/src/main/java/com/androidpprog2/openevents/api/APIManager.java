@@ -8,6 +8,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -237,6 +238,12 @@ public class APIManager {
     }
 
     // GET METHOD
+    // Gets all future events
+    public static void getAllCurrentEvent(Context context, ResponseListener listener) {
+        makeRequest(context, ENDPOINT_EVENTS, Request.Method.GET, listener, null);
+    }
+
+    // GET METHOD
     // Gets event by id
     public static void getEventById(Context context, ResponseListener listener, int id) {
         makeRequest(context, ENDPOINT_EVENTS_ID.replace(ID, Integer.toString(id)), Request.Method.GET, listener, null);
@@ -251,13 +258,29 @@ public class APIManager {
     // GET METHOD
     // Searches events with location, keyword in name, or date containing or matching the values of the query
     // parameters.
-    public void getEventsSearch(Context context, ResponseListener listener, String location, String keyword, String date) {
-        Map<String, String> map = new HashMap<>();
-        map.put("location", location);
-        map.put("keyboard", keyword);
-        map.put("date", date);
+    public static void getEventsSearch(Context context, ResponseListener listener, String location, String keyword, String date) {
+        String url = ENDPOINT_EVENTS_SEARCH + "?location=" + location + "&keyword=" + keyword + "&date=" + date;
+        StringBuilder url2 = new StringBuilder();
+        ArrayList<String> list = new ArrayList<>();
 
-        makeRequest(context, ENDPOINT_EVENTS_SEARCH, Request.Method.GET, listener, map);
+        if (!location.isEmpty()) {
+            list.add("location=" + location);
+        }
+        if (!keyword.isEmpty()) {
+            list.add("keyword=" + keyword);
+        }
+        if (!date.isEmpty()) {
+            list.add("date=" + date);
+        }
+
+        url2.append(ENDPOINT_EVENTS_SEARCH).append("?").append(list.get(0));
+        if (list.size() != 1) {
+            for (int i = 1; i < list.size(); i++) {
+                url2.append("&").append(list.get(i));
+            }
+        }
+
+        makeRequest(context, url2.toString(), Request.Method.GET, listener, null);
     }
 
     // PUT METHOD
