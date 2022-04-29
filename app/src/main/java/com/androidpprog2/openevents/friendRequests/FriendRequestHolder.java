@@ -25,6 +25,8 @@ public class FriendRequestHolder extends RecyclerView.ViewHolder {
     private Button acceptButton;
     private Button declineButton;
 
+    private Button removeFriend;
+
     private Activity activity;
 
 
@@ -63,4 +65,6 @@ public class FriendRequestHolder extends RecyclerView.ViewHolder {
             Picasso.get().load(NO_IMAGE_URL).into(imageView);
         }
     }
+
+
 }

@@ -48,6 +48,7 @@
     <string name="send_friend_request_text">Send Friend Request</string>
     <string name="accept_string">Accept</string>
     <string name="decline_string">Decline</string>
+    <string name="remove_string">Remove</string>
     <string name="default_user_string">#User1</string>
     <string name="my_events_string">My Events</string>
     <string name="location_string">Location</string>

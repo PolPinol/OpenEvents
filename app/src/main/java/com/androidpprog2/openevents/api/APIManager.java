@@ -40,6 +40,7 @@ public class APIManager {
     private static final String ENDPOINT_FRIENDS = BASE_URL + "/friends";
     private static final String ENDPOINT_FRIENDS_REQ = BASE_URL + "/friends/requests";
     private static final String ENDPOINT_FRIENDS_ID = BASE_URL + "/friends/{id}";
+    private static final String ENDPOINT_DELETE_FRIEND = BASE_URL + "/friends/{id}";
     private static final String BEARER = "Bearer ";
     private static final String ID = "{id}";
     private static final String USER_ID = "{user_id}";
