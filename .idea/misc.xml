@@ -70,11 +70,16 @@
         <entry key="app/src/main/res/drawable/message1.xml" value="0.172" />
         <entry key="app/src/main/res/drawable/message2.xml" value="0.172" />
         <entry key="app/src/main/res/layout/activity_create_event.xml" value="0.1721014492753623" />
+        <entry key="app/src/main/res/layout/activity_detail_enroll_event.xml" value="0.1721014492753623" />
         <entry key="app/src/main/res/layout/activity_detail_event.xml" value="0.1721014492753623" />
+        <entry key="app/src/main/res/layout/activity_edit_event.xml" value="0.1721014492753623" />
         <entry key="app/src/main/res/layout/activity_friend_list.xml" value="0.1721014492753623" />
         <entry key="app/src/main/res/layout/activity_friend_requests.xml" value="0.1721014492753623" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.4104773037675499" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1721014492753623" />
         <entry key="app/src/main/res/layout/activity_menu.xml" value="0.30525970458984375" />
+        <entry key="app/src/main/res/layout/activity_my_events.xml" value="0.1721014492753623" />
+        <entry key="app/src/main/res/layout/activity_register.xml" value="0.1721014492753623" />
         <entry key="app/src/main/res/layout/activity_view_all_events.xml" value="0.31402504348140603" />
         <entry key="app/src/main/res/layout/activity_view_my_events.xml" value="0.1721014492753623" />
         <entry key="app/src/main/res/layout/list_events.xml" value="0.4267752163652061" />

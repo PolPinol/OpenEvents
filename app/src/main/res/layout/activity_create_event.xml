@@ -12,7 +12,7 @@
         android:layout_height="52dp"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="28dp"
-        android:background="@drawable/small_radius_button"
+        android:background="@drawable/big_radius_button"
         android:text="@string/create_string"
         android:textAllCaps="false"
         android:textSize="20sp"

@@ -63,7 +63,7 @@
         android:background="@drawable/small_radius_button"
         android:text="@string/register_text"
         android:textAllCaps="false"
-        android:textColor="@color/white"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
