@@ -182,7 +182,7 @@ public class APIManager {
         Map<String, String> map = new HashMap<>();
         map.put("id", Integer.toString(id));
 
-        makeRequest(context, ENDPOINT_USERS_ASSIS.replace(ID, Integer.toString(id)), Request.Method.GET, listener, map);
+        makeRequest(context, ENDPOINT_USERS_ASSIS.replace(ID, Integer.toString(id)), Request.Method.GET, listener, null);
     }
 
     // GET METHOD
