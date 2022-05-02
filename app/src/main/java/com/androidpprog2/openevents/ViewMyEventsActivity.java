@@ -31,6 +31,7 @@ public class ViewMyEventsActivity extends AppCompatActivity implements ResponseL
     private String endDate;
     private String numPart;
     private String type;
+
     private int id;
     private int owner_id;
 

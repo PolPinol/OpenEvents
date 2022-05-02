@@ -21,7 +21,7 @@ import com.androidpprog2.openevents.api.ResponseListener;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class LoginActivity extends AppCompatActivity implements ResponseListener {
+public class  LoginActivity extends AppCompatActivity implements ResponseListener {
     private Button loginButton;
     private Button registerButton;
     private EditText emailText;
