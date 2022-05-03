@@ -6,13 +6,14 @@ import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.androidpprog2.openevents.allEvents.AllEventsHolder;
 import com.androidpprog2.openevents.entities.Event;
 import com.androidpprog2.openevents.myEvents.MyEventHolder;
 
 
 import java.util.List;
 
-public class EnrolledEventsAdapter extends RecyclerView.Adapter<MyEventHolder>{
+public class EnrolledEventsAdapter extends RecyclerView.Adapter<AllEventsHolder>{
     private List<Event> listEvents;
     private Activity activity;
 
@@ -22,13 +23,13 @@ public class EnrolledEventsAdapter extends RecyclerView.Adapter<MyEventHolder>{
     }
 
     @Override
-    public MyEventHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public AllEventsHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(activity);
-        return new MyEventHolder(layoutInflater, parent, activity);
+        return new AllEventsHolder(layoutInflater, parent, activity);
     }
 
     @Override
-    public void onBindViewHolder(MyEventHolder holder, int position) {
+    public void onBindViewHolder(AllEventsHolder holder, int position) {
         Event event = listEvents.get(position);
         holder.bind(event);
     }
