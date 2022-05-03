@@ -43,6 +43,25 @@
         app:layout_constraintTop_toBottomOf="@+id/profile_button" />
 
     <Button
+        android:id="@+id/enrolled_button"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/big_radius_button"
+
+        android:text="@string/enrolled_button_string"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/manage_events_button"
+        app:layout_constraintBottom_toTopOf="@+id/search_button"
+        />
+
+    <Button
         android:id="@+id/search_button"
         android:layout_width="0dp"
         android:layout_height="49dp"
@@ -53,11 +72,11 @@
         android:text="@string/social_text"
         android:textAllCaps="false"
         android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@+id/manage_events_button"
         app:layout_constraintBottom_toTopOf="@+id/profile_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enrolled_button" />
 
     <Button
         android:id="@+id/manage_events_button"
@@ -70,7 +89,7 @@
         android:text="@string/manage_own_events_text"
         android:textAllCaps="false"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/search_button"
+        app:layout_constraintBottom_toTopOf="@+id/enrolled_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

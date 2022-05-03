@@ -66,7 +66,7 @@ public class FriendListActivity extends AppCompatActivity implements ResponseLis
 
     @Override
     public void onResponse(String response) {
-        try { //CANVIAR AQUESTA FUNCIO PER ELIMINAR UN AMIC
+        try {
             JSONArray jsonArray = new JSONArray(response);
             for (int i = 0; i < jsonArray.length(); i++) {
                 name = jsonArray.getJSONObject(i).getString("name");

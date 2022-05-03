@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.androidpprog2.openevents.allEvents.AllEventsActivity;
 import com.androidpprog2.openevents.api.APIManager;
+import com.androidpprog2.openevents.enroll.EnrolledEventsActivity;
 import com.androidpprog2.openevents.myEvents.MyEventsActivity;
 
 public class MenuActivity extends AppCompatActivity {
@@ -19,6 +20,7 @@ public class MenuActivity extends AppCompatActivity {
     private Button profileButton;
     private Button logoutButton;
     private Button allEventsButton;
+    private Button enrollEventsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,15 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MenuActivity.this, SocialMenuActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        enrollEventsButton = findViewById(R.id.enrolled_button);
+        enrollEventsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MenuActivity.this, EnrolledEventsActivity.class);
                 startActivity(intent);
             }
         });

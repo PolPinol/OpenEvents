@@ -73,6 +73,7 @@
         <entry key="app/src/main/res/layout/activity_detail_enroll_event.xml" value="0.1721014492753623" />
         <entry key="app/src/main/res/layout/activity_detail_event.xml" value="0.1721014492753623" />
         <entry key="app/src/main/res/layout/activity_edit_event.xml" value="0.1721014492753623" />
+        <entry key="app/src/main/res/layout/activity_events_enrolled.xml" value="0.19501227458924741" />
         <entry key="app/src/main/res/layout/activity_friend_list.xml" value="0.1721014492753623" />
         <entry key="app/src/main/res/layout/activity_friend_requests.xml" value="0.1721014492753623" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.4104773037675499" />
