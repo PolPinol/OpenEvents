@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.androidpprog2.openevents.allEvents.AllEventsHolder;
 import com.androidpprog2.openevents.entities.Event;
-import com.androidpprog2.openevents.myEvents.MyEventHolder;
 
 
 import java.util.List;
