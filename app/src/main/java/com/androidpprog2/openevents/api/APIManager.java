@@ -33,7 +33,7 @@ public class APIManager {
     private static final String ENDPOINT_EVENTS_SEARCH = BASE_URL + "/events/search";
     private static final String ENDPOINT_EVENTS_ASSIS = BASE_URL + "/events/{id}/assistances";
     private static final String ENDPOINT_EVENTS_ONE_ASSIS = BASE_URL + "/events/{event_id}/assistances/{user_id}";
-    private static final String ENDPOINT_ASSISTANCES = BASE_URL + "assistances/{user_id}/{event_id}";
+    private static final String ENDPOINT_ASSISTANCES = BASE_URL + "/assistances/{user_id}/{event_id}";
     private static final String ENDPOINT_MESSAGES = BASE_URL + "/messages";
     private static final String ENDPOINT_MESS_USERS = BASE_URL + "/messages/users";
     private static final String ENDPOINT_MESS_ID = BASE_URL + "/messages/{id}";
@@ -64,6 +64,7 @@ public class APIManager {
     }
 
     public static void setId(int id) {
+        Log.i("id", String.valueOf(id));
         APIManager.id = id;
     }
 
@@ -179,9 +180,6 @@ public class APIManager {
     // GET METHOD
     // Gets all events with assistance by user with matching id
     public static void getAllEventsWithAssistanceFromUser(Context context, ResponseListener listener, int id) {
-        Map<String, String> map = new HashMap<>();
-        map.put("id", Integer.toString(id));
-
         makeRequest(context, ENDPOINT_USERS_ASSIS.replace(ID, Integer.toString(id)), Request.Method.GET, listener, null);
     }
 

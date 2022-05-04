@@ -17,10 +17,16 @@ import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class DetailEventActivity extends AppCompatActivity implements ResponseListener {
     private final static String NO_IMAGE_URL = "https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg";
     private final static int EVENT_INFO = 0;
     private final static int EVENT_REMOVE = 1;
+    private static final long HOUR = 3600*1000;
 
     private int id_event;
     private int modeResponse;
@@ -109,8 +115,17 @@ public class DetailEventActivity extends AppCompatActivity implements ResponseLi
 
                 locationTextView.setText(location);
                 descriptionTextView.setText(description);
-                startDateTextView.setText(startDate);
-                endDateTextView.setText(endDate);
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.FRANCE);
+                DateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.FRANCE);
+                Date date1 = dateFormat.parse(startDate);
+                Date date2 = dateFormat.parse(endDate);
+                if (date1 == null || date2 == null) {
+                    startDateTextView.setText(R.string.null_string);
+                    endDateTextView.setText(R.string.null_string);
+                } else {
+                    startDateTextView.setText(dateFormat2.format(date1.getTime()+ 2 * HOUR));
+                    endDateTextView.setText(dateFormat2.format(date2.getTime()+ 2 * HOUR));
+                }
                 numPartTextView.setText(String.valueOf(numPart));
                 typeTextView.setText(type);
 

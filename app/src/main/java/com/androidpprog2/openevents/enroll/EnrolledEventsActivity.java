@@ -1,6 +1,7 @@
 package com.androidpprog2.openevents.enroll;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -78,6 +79,11 @@ public class EnrolledEventsActivity extends AppCompatActivity implements Respons
         try {
             JSONArray jsonArray = new JSONArray(response);
             for (int i = 0; i < jsonArray.length(); i++) {
+                if (!jsonArray.getJSONObject(i).has("owner_id") || jsonArray.getJSONObject(i).isNull("owner_id")) {
+                    // Solve error
+                    continue;
+                }
+
                 name = jsonArray.getJSONObject(i).getString("name");
                 image = jsonArray.getJSONObject(i).getString("image");
                 location = jsonArray.getJSONObject(i).getString("location");

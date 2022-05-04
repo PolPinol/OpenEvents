@@ -48,20 +48,6 @@
                 android:textColor="@color/black"
                 android:textSize="14sp" />
 
-            <Button
-                android:id="@+id/remove_button"
-                android:layout_width="95dp"
-                android:layout_height="42dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerInParent="true"
-                android:layout_marginRight="89dp"
-                android:backgroundTint="@color/dark_red"
-                android:text="@string/remove_string"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
-
         </RelativeLayout  >
 
     </LinearLayout>

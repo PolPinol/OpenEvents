@@ -30,7 +30,6 @@ public class FriendListHolder extends RecyclerView.ViewHolder {
     private int id;
 
     private Button chatButton;
-    private Button removeButton;
 
     private Activity activity;
 
@@ -48,16 +47,6 @@ public class FriendListHolder extends RecyclerView.ViewHolder {
                 Intent intent = new Intent(activity, ChatActivity.class);
                 intent.putExtra("ARGUMENT_OTHER_ID", id);
                 activity.startActivity(intent);
-            }
-        });
-
-        removeButton = itemView.findViewById(R.id.remove_button);
-        removeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //NO HI HA REQUEST EN LA DOCUMENTATION
-                //Remove de la llista de amics
-                System.out.println("REMOVE");
             }
         });
 

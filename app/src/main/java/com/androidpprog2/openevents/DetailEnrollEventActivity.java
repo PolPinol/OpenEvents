@@ -30,14 +30,19 @@ import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class DetailEnrollEventActivity extends AppCompatActivity implements ResponseListener {
@@ -48,6 +53,7 @@ public class DetailEnrollEventActivity extends AppCompatActivity implements Resp
     private final static int EVENT_DESNENROLL = 3;
     private final static int EVENT_COMMENT = 4;
     private final static int  EVENT_RATING = 5;
+    private static final long HOUR = 3600*1000;
 
     private int id_event;
     private int modeResponse;
@@ -72,6 +78,8 @@ public class DetailEnrollEventActivity extends AppCompatActivity implements Resp
 
     private TextView enrolledText;
     private TextView ratingText;
+    private TextView listPeopleEnrolledText;
+    private TextView addCommentText;
     private Button enrollButton;
     private Button postCommentButton;
     private RatingBar ratingBar;
@@ -96,7 +104,6 @@ public class DetailEnrollEventActivity extends AppCompatActivity implements Resp
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new OpinionsAdapter(null, this);
         recyclerView.setAdapter(adapter);
-
         this.activity = this;
         imageTextView = findViewById(R.id.image_event_show);
         nameTextView = findViewById(R.id.name_event_show);
@@ -106,6 +113,8 @@ public class DetailEnrollEventActivity extends AppCompatActivity implements Resp
         endDateTextView = findViewById(R.id.endDate_show);
         numPartTextView = findViewById(R.id.numpart_show);
         typeTextView = findViewById(R.id.type_event_text);
+        listPeopleEnrolledText = findViewById(R.id.list_people_enrolled_event);
+        addCommentText = findViewById(R.id.put_comment_text);
         this.id_event = getIntent().getExtras().getInt("ARGUMENT_EVENT_ID");
 
         enrollButton = findViewById(R.id.enroll_event_button);
@@ -121,6 +130,8 @@ public class DetailEnrollEventActivity extends AppCompatActivity implements Resp
         enrolledText.setVisibility(GONE); //TODO: only gone the first time
         enrollButton.setVisibility(GONE);
         postCommentButton.setVisibility(GONE);
+        listPeopleEnrolledText.setVisibility(GONE);
+        addCommentText.setVisibility(GONE);
 
         enrollButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,6 +155,7 @@ public class DetailEnrollEventActivity extends AppCompatActivity implements Resp
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                 // Cridar a l'API per posar puntuació a l'event
                 Map<String, String> map = new HashMap<>();
+                modeResponse = EVENT_RATING;
                 map.put("puntuation", Integer.toString((int) (ratingBar.getRating() * 2)));
                 APIManager.putCommentOrRate(activity, DetailEnrollEventActivity.this, APIManager.getId(), id_event, map);
             }
@@ -154,6 +166,7 @@ public class DetailEnrollEventActivity extends AppCompatActivity implements Resp
             public void onClick(View view) {
                 Map<String, String> map = new HashMap<>();
                 if (!commentsText.getText().toString().isEmpty()) {
+                    modeResponse = EVENT_COMMENT;
                     map.put("comentary", commentsText.getText().toString());
                     APIManager.putCommentOrRate(view.getContext(), DetailEnrollEventActivity.this, APIManager.getId(), id_event, map);
                 } else {
@@ -197,15 +210,25 @@ public class DetailEnrollEventActivity extends AppCompatActivity implements Resp
 
                     locationTextView.setText(location);
                     descriptionTextView.setText(description);
-                    startDateTextView.setText(startDate);
-                    endDateTextView.setText(endDate);
+
+                    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.FRANCE);
+                    DateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.FRANCE);
+                    Date date1 = dateFormat.parse(startDate);
+                    Date date2 = dateFormat.parse(endDate);
+                    if (date1 == null || date2 == null) {
+                        startDateTextView.setText(R.string.null_string);
+                        endDateTextView.setText(R.string.null_string);
+                    } else {
+                        startDateTextView.setText(dateFormat2.format(date1.getTime()+ 2 * HOUR));
+                        endDateTextView.setText(dateFormat2.format(date2.getTime()+ 2 * HOUR));
+                    }
+
                     numPartTextView.setText(String.valueOf(numPart));
                     typeTextView.setText(type);
 
                     modeResponse = EVENT_ASSIS;
                     APIManager.getEventAssistancesById(this, DetailEnrollEventActivity.this, id_event);
                 } catch (Exception e) {
-                    e.printStackTrace();
                     Toast.makeText(this, R.string.error_parsing_json, Toast.LENGTH_LONG).show();
                 }
                 break;
@@ -222,17 +245,12 @@ public class DetailEnrollEventActivity extends AppCompatActivity implements Resp
                     // Comentari
                     String comment;
                     int id;
+                    boolean isEnrolled = false;
 
                     for (int i = 0; i < jsonArray.length(); i++) {
                         id = jsonArray.getJSONObject(i).getInt("id");
                         if (id == APIManager.getId()) {
-                            wasEnrolled = true;
-                            enrolledText.setVisibility(View.VISIBLE);
-                            enrollButton.setText(R.string.unenroll_string);
-                        } else {
-                            wasEnrolled = false;
-                            enrolledText.setVisibility(GONE);
-                            enrollButton.setText(R.string.enroll_string);
+                            isEnrolled = true;
                         }
 
                         name = jsonArray.getJSONObject(i).getString("name");
@@ -242,6 +260,22 @@ public class DetailEnrollEventActivity extends AppCompatActivity implements Resp
                         comment = jsonArray.getJSONObject(i).getString("comentary");
                         UserOpinion userOpinion = new UserOpinion(name, lastName, email, rate, comment);
                         opinionsList.add(userOpinion);
+                    }
+
+                    if (jsonArray.length() == 0) {
+                        listPeopleEnrolledText.setVisibility(GONE);
+                    } else {
+                        listPeopleEnrolledText.setVisibility(View.VISIBLE);
+                    }
+
+                    if (isEnrolled) {
+                        wasEnrolled = true;
+                        enrolledText.setVisibility(View.VISIBLE);
+                        enrollButton.setText(R.string.unenroll_string);
+                    } else {
+                        wasEnrolled = false;
+                        enrolledText.setVisibility(GONE);
+                        enrollButton.setText(R.string.enroll_string);
                     }
 
                     showPossibleActions(startDate, endDate);
@@ -256,27 +290,26 @@ public class DetailEnrollEventActivity extends AppCompatActivity implements Resp
             case EVENT_DESNENROLL:
             case EVENT_COMMENT:
             case EVENT_RATING:
-                modeResponse = EVENT_ASSIS;
-                APIManager.getEventAssistancesById(this, DetailEnrollEventActivity.this, id_event);
                 opinionsList = new ArrayList<>();
-                updateUI();
+                modeResponse = EVENT_INFO;
+                APIManager.getEventById(this, this, id_event);
                 break;
         }
-
     }
 
     @Override
     public void onError(VolleyError error) {
-        Toast.makeText(this, R.string.toast_api_error, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, R.string.error_parameters, Toast.LENGTH_LONG).show();
     }
 
     private void showPossibleActions(String startDate, String endDate) {
         try {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            Date dateEnd = dateFormat.parse(endDate.substring(0, 10));
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+            Date dateEnd = dateFormat.parse(endDate);
+
             Date actualDate = null;
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                actualDate = dateFormat.parse(LocalDateTime.now().toString().substring(0, 10));
+                actualDate = dateFormat.parse(LocalDateTime.now().toString());
             }
 
             if (dateEnd != null) {
@@ -287,10 +320,11 @@ public class DetailEnrollEventActivity extends AppCompatActivity implements Resp
                     ratingBar.setVisibility(View.VISIBLE);
                     ratingText.setVisibility(View.VISIBLE);
                     postCommentButton.setVisibility(View.VISIBLE);
+                    addCommentText.setVisibility(View.VISIBLE);
                 } else {
                     // If the event has not already started, the user can enroll and
                     // unenroll the event
-                    Date dateStart = dateFormat.parse(startDate.substring(0, 10));
+                    Date dateStart = dateFormat.parse(startDate);
                     if (dateStart != null) {
                         if (dateStart.after(actualDate)) {
                             enrollButton.setVisibility(View.VISIBLE);
@@ -298,7 +332,6 @@ public class DetailEnrollEventActivity extends AppCompatActivity implements Resp
                     }
                 }
             }
-
         } catch (Exception ex) {
             Toast.makeText(this, R.string.error_parsing_date, Toast.LENGTH_LONG).show();
         }

@@ -276,8 +276,6 @@ public class AllEventsActivity extends AppCompatActivity implements ResponseList
         categoryButton.setTextColor(getColor(R.color.white));
         filtersButton.setTextColor(getColor(R.color.white));
         popularityButton.setTextColor(getColor(R.color.white));
-
-        // Realitzar el GET /events
     }
 
     private void updateUI() {
@@ -296,6 +294,7 @@ public class AllEventsActivity extends AppCompatActivity implements ResponseList
     protected void onResume() {
         super.onResume();
         eventList = new ArrayList<>();
+        onCurrentEventsClick();
         mode = MODE_CURRENT_EVENTS;
         APIManager.getAllCurrentEvent(this, this);
     }

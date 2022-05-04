@@ -114,6 +114,10 @@
     <string name="comment_example">lorem ipsum dolor sit amet consectetur adipiscing elit</string>
     <string name="default_surname_string">surnameUser1</string>
     <string name="error_comment_empty">Error! The comment mustn\'t be empty</string>
-    <string name="enrolled_events_string">Currently Enrolled Events</string>
+    <string name="enrolled_events_string">Enrolled Events</string>
     <string name="enrolled_button_string">Enrolled Events</string>
+    <string name="list_people_enrolled_event_string">List people enrolled:</string>
+    <string name="error_parameters">Error at commenting.</string>
+    <string name="put_comment_string">Add comment:</string>
+    <string name="null_string">NULL</string>
 </resources>
