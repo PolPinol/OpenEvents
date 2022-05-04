@@ -1,4 +1,4 @@
-package com.androidpprog2.openevents;
+package com.androidpprog2.openevents.myEvents;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,30 +7,25 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class ManageEventsActivity extends AppCompatActivity {
-    Button createEventButton;
-    Button editEventButton;
-    Button viewEventsButton;
+import com.androidpprog2.openevents.CreateEventActivity;
+import com.androidpprog2.openevents.R;
+import com.androidpprog2.openevents.ViewMyEventsActivity;
+
+public class MyEventsActivity extends AppCompatActivity {
+    private Button createEventButton;
+    private Button viewEventsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manage_events);
+        setContentView(R.layout.activity_my_events);
+        getSupportActionBar().hide();
 
         createEventButton = findViewById(R.id.create_event_button);
         createEventButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ManageEventsActivity.this, CreateEventActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        editEventButton = findViewById(R.id.edit_event_button);
-        editEventButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ManageEventsActivity.this, EditEventActivity.class);
+                Intent intent = new Intent(MyEventsActivity.this, CreateEventActivity.class);
                 startActivity(intent);
             }
         });
@@ -39,10 +34,9 @@ public class ManageEventsActivity extends AppCompatActivity {
         viewEventsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ManageEventsActivity.this, ViewEventsActivity.class);
+                Intent intent = new Intent(MyEventsActivity.this, ViewMyEventsActivity.class);
                 startActivity(intent);
             }
         });
-
     }
 }

@@ -1,12 +1,14 @@
 package com.androidpprog2.openevents.api;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,26 +33,52 @@ public class APIManager {
     private static final String ENDPOINT_EVENTS_SEARCH = BASE_URL + "/events/search";
     private static final String ENDPOINT_EVENTS_ASSIS = BASE_URL + "/events/{id}/assistances";
     private static final String ENDPOINT_EVENTS_ONE_ASSIS = BASE_URL + "/events/{event_id}/assistances/{user_id}";
-    private static final String ENDPOINT_ASSISTANCES = BASE_URL + "assistances/{user_id}/{event_id}";
+    private static final String ENDPOINT_ASSISTANCES = BASE_URL + "/assistances/{user_id}/{event_id}";
     private static final String ENDPOINT_MESSAGES = BASE_URL + "/messages";
     private static final String ENDPOINT_MESS_USERS = BASE_URL + "/messages/users";
     private static final String ENDPOINT_MESS_ID = BASE_URL + "/messages/{id}";
     private static final String ENDPOINT_FRIENDS = BASE_URL + "/friends";
     private static final String ENDPOINT_FRIENDS_REQ = BASE_URL + "/friends/requests";
     private static final String ENDPOINT_FRIENDS_ID = BASE_URL + "/friends/{id}";
+    private static final String ENDPOINT_DELETE_FRIEND = BASE_URL + "/friends/{id}";
     private static final String BEARER = "Bearer ";
     private static final String ID = "{id}";
     private static final String USER_ID = "{user_id}";
     private static final String EVENT_ID = "{event_id}";
 
     private static String token;
+    private static String email;
+    private static int id;
 
     public APIManager() {
 
     }
 
+    public static boolean isTokenNull() {
+        return APIManager.token == null;
+    }
+
     public static void setToken(String token) {
+        Log.i("token", token);
         APIManager.token = token;
+    }
+
+    public static void setId(int id) {
+        Log.i("id", String.valueOf(id));
+        APIManager.id = id;
+    }
+
+    public static int getId() {
+        return APIManager.id;
+    }
+
+    public static void setEmailAndGetId(Context context, ResponseListener listener, String email) {
+        APIManager.email = email;
+        getUsersFiltered(context, listener, email);
+    }
+
+    public static void logout() {
+        APIManager.token = null;
     }
 
     // POST METHOD
@@ -84,40 +112,27 @@ public class APIManager {
 
     // GET METHOD
     public static void getUserById(Context context, ResponseListener listener, int id) {
-        Map<String, String> map = new HashMap<>();
-        map.put("id", Integer.toString(id));
-
-        makeRequest(context, ENDPOINT_USERS_ID.replace(ID, Integer.toString(id)), Request.Method.GET, listener, map);
+        makeRequest(context, ENDPOINT_USERS_ID.replace(ID, Integer.toString(id)), Request.Method.GET, listener, null);
     }
 
     // GET METHOD
     // Searches users with a name, last name or email matching the value of the query parameter
     public static void getUsersFiltered(Context context, ResponseListener listener, String s) {
-        Map<String, String> map = new HashMap<>();
-        map.put("s", s);
+        String url = ENDPOINT_USERS_SEARCH + "?s=" + s;
 
-        makeRequest(context, ENDPOINT_USERS_SEARCH, Request.Method.GET, listener, map);
+        makeRequest(context, url, Request.Method.GET, listener, null);
     }
 
     // GET METHOD
     // Gets the user statistics: average score given for events "puntuation", number of comments written for
     // events, and percentage of users with lower number of comments than this user.
     public static void getUserStats(Context context, ResponseListener listener, int id) {
-        Map<String, String> map = new HashMap<>();
-        map.put("id", Integer.toString(id));
-
-        makeRequest(context, ENDPOINT_USERS_STATS.replace(ID, Integer.toString(id)), Request.Method.GET, listener, map);
+        makeRequest(context, ENDPOINT_USERS_STATS.replace(ID, Integer.toString(id)), Request.Method.GET, listener, null);
     }
 
     // PUT METHOD
     // Edits specified fields of the authenticated user
-    public static void editCurrentUser(Context context, ResponseListener listener, String name, String last_name, String email, String image) {
-        Map<String, String> map = new HashMap<>();
-        map.put("name", name);
-        map.put("last_name", last_name);
-        map.put("email", email);
-        map.put("image", image);
-
+    public static void editCurrentUser(Context context, ResponseListener listener, Map<String, String> map) {
         makeRequest(context, ENDPOINT_USERS, Request.Method.PUT, listener, map);
     }
 
@@ -165,10 +180,7 @@ public class APIManager {
     // GET METHOD
     // Gets all events with assistance by user with matching id
     public static void getAllEventsWithAssistanceFromUser(Context context, ResponseListener listener, int id) {
-        Map<String, String> map = new HashMap<>();
-        map.put("id", Integer.toString(id));
-
-        makeRequest(context, ENDPOINT_USERS_ASSIS.replace(ID, Integer.toString(id)), Request.Method.GET, listener, map);
+        makeRequest(context, ENDPOINT_USERS_ASSIS.replace(ID, Integer.toString(id)), Request.Method.GET, listener, null);
     }
 
     // GET METHOD
@@ -202,7 +214,7 @@ public class APIManager {
     // Creates a new event
     public static void postEvent(Context context, ResponseListener listener, String name, String image,
                           String location, String description, String eventStart_date,
-                          String eventEnd_date, int n_participators, String type) {
+                          String eventEnd_date, String n_participators, String type) {
 
         Map<String, String> map = new HashMap<>();
         map.put("name", name);
@@ -211,26 +223,29 @@ public class APIManager {
         map.put("description", description);
         map.put("eventStart_date", eventStart_date);
         map.put("eventEnd_date", eventEnd_date);
-        map.put("n_participators", Integer.toString(n_participators));
+        map.put("n_participators", n_participators);
         map.put("type", type);
 
-        makeRequest(context, ENDPOINT_EVENTS, Request.Method.GET, listener, map);
+        makeRequest(context, ENDPOINT_EVENTS, Request.Method.POST, listener, map);
     }
 
     // GET METHOD
     // Gets all future events
     public static void getAllEvent(Context context, ResponseListener listener) {
+        String url = ENDPOINT_EVENTS_SEARCH + "?location=";
+        makeRequest(context, url, Request.Method.GET, listener, null);
+    }
+
+    // GET METHOD
+    // Gets all future events
+    public static void getAllCurrentEvent(Context context, ResponseListener listener) {
         makeRequest(context, ENDPOINT_EVENTS, Request.Method.GET, listener, null);
     }
 
     // GET METHOD
     // Gets event by id
     public static void getEventById(Context context, ResponseListener listener, int id) {
-        Map<String, String> map = new HashMap<>();
-        map.put("id", Integer.toString(id));
-
-        makeRequest(context, ENDPOINT_EVENTS_ID.replace(ID, Integer.toString(id)), Request.Method.GET, listener, map);
-
+        makeRequest(context, ENDPOINT_EVENTS_ID.replace(ID, Integer.toString(id)), Request.Method.GET, listener, null);
     }
 
     // GET METHOD
@@ -242,40 +257,47 @@ public class APIManager {
     // GET METHOD
     // Searches events with location, keyword in name, or date containing or matching the values of the query
     // parameters.
-    public void getEventsSearch(Context context, ResponseListener listener, String location, String keyword, String date) {
-        Map<String, String> map = new HashMap<>();
-        map.put("location", location);
-        map.put("keyboard", keyword);
-        map.put("date", date);
+    public static void getEventsSearch(Context context, ResponseListener listener, String location, String keyword, String date) {
+        String url = ENDPOINT_EVENTS_SEARCH + "?location=" + location + "&keyword=" + keyword + "&date=" + date;
+        StringBuilder url2 = new StringBuilder();
+        ArrayList<String> list = new ArrayList<>();
 
-        makeRequest(context, ENDPOINT_EVENTS_SEARCH, Request.Method.GET, listener, map);
+        if (!location.isEmpty()) {
+            list.add("location=" + location);
+        }
+        if (!keyword.isEmpty()) {
+            list.add("keyword=" + keyword);
+        }
+        if (!date.isEmpty()) {
+            list.add("date=" + date);
+        }
+
+        url2.append(ENDPOINT_EVENTS_SEARCH).append("?").append(list.get(0));
+        if (list.size() != 1) {
+            for (int i = 1; i < list.size(); i++) {
+                url2.append("&").append(list.get(i));
+            }
+        }
+
+        makeRequest(context, url2.toString(), Request.Method.GET, listener, null);
     }
 
     // PUT METHOD
     // Edits specified fields of the event with matching id
-    public static void putEventById(Context context, ResponseListener listener, int id) {
-        Map<String, String> map = new HashMap<>();
-        map.put("id", Integer.toString(id));
-
+    public static void putEventById(Context context, ResponseListener listener, int id, Map<String, String> map) {
         makeRequest(context, ENDPOINT_EVENTS_ID.replace(ID, Integer.toString(id)), Request.Method.PUT, listener, map);
     }
 
     // DELETE METHOD
     // Deletes event with matching id
     public static void deleteEventById(Context context, ResponseListener listener, int id) {
-        Map<String, String> map = new HashMap<>();
-        map.put("id", Integer.toString(id));
-
-        makeRequest(context, ENDPOINT_EVENTS_ID.replace(ID, Integer.toString(id)), Request.Method.DELETE, listener, map);
+        makeRequest(context, ENDPOINT_EVENTS_ID.replace(ID, Integer.toString(id)), Request.Method.DELETE, listener, null);
     }
 
     // GET METHOD
     // Gets all assistances for event with matching id
     public static void getEventAssistancesById(Context context, ResponseListener listener, int id) {
-        Map<String, String> map = new HashMap<>();
-        map.put("id", Integer.toString(id));
-
-        makeRequest(context, ENDPOINT_EVENTS_ASSIS.replace(ID, Integer.toString(id)), Request.Method.GET, listener, map);
+        makeRequest(context, ENDPOINT_EVENTS_ASSIS.replace(ID, Integer.toString(id)), Request.Method.GET, listener, null);
     }
 
     // GET METHOD
@@ -300,10 +322,7 @@ public class APIManager {
 
     // PUT METHOD
     // Edits assistance of authenticated user for the event with matching id
-    public static void editEventAssistanceById(Context context, ResponseListener listener, int id) {
-        Map<String, String> map = new HashMap<>();
-        map.put("id", Integer.toString(id));
-
+    public static void editEventAssistanceById(Context context, ResponseListener listener, int id, Map<String, String> map) {
         makeRequest(context, ENDPOINT_EVENTS_ASSIS.replace(ID, Integer.toString(id)), Request.Method.PUT, listener, map);
     }
 
@@ -329,32 +348,20 @@ public class APIManager {
 
     // POST METHOD
     // Creates assistance of user with matching id for event with matching id
-    public static void createAssistance(Context context, ResponseListener listener, int user_id, int event_id) {
-        Map<String, String> map = new HashMap<>();
-        map.put("user_id", Integer.toString(user_id));
-        map.put("event_id", Integer.toString(event_id));
-
-        makeRequest(context, ENDPOINT_ASSISTANCES.replace(USER_ID, String.valueOf(user_id)).replace(EVENT_ID,  String.valueOf(event_id)), Request.Method.POST, listener, map);
+    public static void createAssistance(Context context, ResponseListener listener, int event_id) {
+        makeRequest(context, ENDPOINT_EVENTS_ASSIS.replace(ID, String.valueOf(event_id)), Request.Method.POST, listener, null);
     }
 
     // PUT METHOD
     // Edits assistance of user with matching id for the event with matching id
-    public static void editAssistance(Context context, ResponseListener listener, int user_id, int event_id) {
-        Map<String, String> map = new HashMap<>();
-        map.put("user_id", Integer.toString(user_id));
-        map.put("event_id", Integer.toString(event_id));
-
+    public static void putCommentOrRate(Context context, ResponseListener listener, int user_id, int event_id, Map<String, String> map) {
         makeRequest(context, ENDPOINT_ASSISTANCES.replace(USER_ID, String.valueOf(user_id)).replace(EVENT_ID,  String.valueOf(event_id)), Request.Method.PUT, listener, map);
     }
 
     // DELETE METHOD
     // Deletes assistance of user with matching id for the event with matching id
-    public static void deleteAssistance(Context context, ResponseListener listener, int user_id, int event_id) {
-        Map<String, String> map = new HashMap<>();
-        map.put("user_id", Integer.toString(user_id));
-        map.put("event_id", Integer.toString(event_id));
-
-        makeRequest(context, ENDPOINT_ASSISTANCES.replace(USER_ID, String.valueOf(user_id)).replace(EVENT_ID,  String.valueOf(event_id)), Request.Method.DELETE, listener, map);
+    public static void deleteAssistance(Context context, ResponseListener listener, int event_id) {
+        makeRequest(context, ENDPOINT_EVENTS_ASSIS.replace(ID, String.valueOf(event_id)), Request.Method.DELETE, listener, null);
     }
 
     // POST METHOD
@@ -363,10 +370,9 @@ public class APIManager {
         Map<String, String> map = new HashMap<>();
         map.put("content", content);
         map.put("user_id_send", Integer.toString(user_id_send));
-        map.put("event_id_recieved", Integer.toString(user_id_recived));
+        map.put("user_id_recived", Integer.toString(user_id_recived));
 
         makeRequest(context, ENDPOINT_MESSAGES, Request.Method.POST, listener, map);
-
     }
 
     // GET METHOD
@@ -379,15 +385,12 @@ public class APIManager {
     // GET METHOD
     // Gets all messages between the external user with matching id and the authenticated user
     public static void getAllMessages(Context context, ResponseListener listener, int id) {
-        Map<String, String> map = new HashMap<>();
-        map.put("id", Integer.toString(id));
-
-        makeRequest(context, ENDPOINT_MESS_ID.replace(ID, Integer.toString(id)), Request.Method.GET, listener, map);
+        makeRequest(context, ENDPOINT_MESS_ID.replace(ID, Integer.toString(id)), Request.Method.GET, listener, null);
     }
 
     // GET METHOD
     // Gets all external users that have sent a friendship request to the authenticated user
-    public static void getFriends(Context context, ResponseListener listener) {
+    public static void getFriendRequests(Context context, ResponseListener listener) {
         makeRequest(context, ENDPOINT_FRIENDS_REQ, Request.Method.GET, listener, null);
     }
 
@@ -400,29 +403,19 @@ public class APIManager {
     // POST METHOD
     // Creates friendship request to external user with match id from authenticated user
     public static void createFriendship(Context context, ResponseListener listener, int id) {
-        Map<String, String> map = new HashMap<>();
-        map.put("id", Integer.toString(id));
-
-        makeRequest(context, ENDPOINT_FRIENDS_ID.replace(ID, Integer.toString(id)), Request.Method.POST, listener, map);
+        makeRequest(context, ENDPOINT_FRIENDS_ID.replace(ID, Integer.toString(id)), Request.Method.POST, listener, null);
     }
 
     // PUT METHOD
     // Accepts friendship request from external user to authenticated user
     public static void acceptFriendshipRequest(Context context, ResponseListener listener, int id) {
-        Map<String, String> map = new HashMap<>();
-        map.put("id", Integer.toString(id));
-
-        makeRequest(context, ENDPOINT_FRIENDS_ID, Request.Method.PUT, listener, map);
-
+        makeRequest(context, ENDPOINT_FRIENDS_ID.replace(ID, Integer.toString(id)), Request.Method.PUT, listener, null);
     }
 
     // DELETE METHOD
     // Rejects friendship request from external user to authenticated user
-    public static void deleteFriend(Context context, ResponseListener listener, int id) {
-        Map<String, String> map = new HashMap<>();
-        map.put("id", Integer.toString(id));
-
-        makeRequest(context, ENDPOINT_FRIENDS_ID.replace(ID, Integer.toString(id)), Request.Method.DELETE, listener, map);
+    public static void declineFriendshipRequest(Context context, ResponseListener listener, int id) {
+        makeRequest(context, ENDPOINT_FRIENDS_ID.replace(ID, Integer.toString(id)), Request.Method.DELETE, listener, null);
     }
 
     // REQUEST METHOD
@@ -441,7 +434,7 @@ public class APIManager {
                 params.put("Content-Type","application/x-www-form-urlencoded");
 
                 if (token != null) {
-                    params.put("Authorization", BEARER + token);
+                    params.put("Authorization", BEARER + APIManager.token);
                 }
 
                 return params;
